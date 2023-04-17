@@ -4,11 +4,7 @@ import streamlit as st
 st.title("Hello!")
 
 # Add some text
-st.write("Welcome to my Streamlit app! Say hello below.")
+st.write("Welcome to my final Project")
 
-# Add an input field for the user to enter their name
-name = st.text_input("Enter your name")
-
-# Add a button to submit the name
-if st.button("Submit"):
-    st.write(f"Hello, {name}!")
+#Instruction 
+st.write("select the application that you would like to use")
