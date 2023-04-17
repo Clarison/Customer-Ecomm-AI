@@ -5,11 +5,11 @@ import pandas as pd
 # Connect to Snowflake
 conn = snowflake.connector.connect(
     user= st.secrets["user"],
-    password='@Noon1240',
-    account='dl84836.us-east-2.aws',
-    warehouse='COMPUTE_WH',
-    database='SNOWFLAKE_SAMPLE_DATA',
-    schema='TPCH_SF10'
+    password= st.secrets["password"],
+    account= st.secrets["account"],
+    warehouse= st.secrets["warehouse"]',
+    database= st.secrets["database"],
+    schema= st.secrets["schema"]
 )
 
 # Define a SQL query to fetch data from a table
