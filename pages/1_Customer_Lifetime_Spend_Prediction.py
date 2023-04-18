@@ -103,7 +103,7 @@ df_summary_hist = df_summary[df_summary['o_orderdate_purchase_duration']>1]
 
 # Create a histogram of duration in seconds
 chart = alt.Chart(df_summary_hist).mark_bar().encode(
-    x=alt.X('o_orderdate_purchase_duration:Q', bin=alt.Bin(step=10), title='Duration (days)'),
+    x=alt.X('o_orderdate_purchase_duration:Q', bin=alt.Bin(step=100), title='Duration (days)'),
     y=alt.Y('count()', title='Number of Occurrences')
 ).properties(
     width=600,
