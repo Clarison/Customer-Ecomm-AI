@@ -66,7 +66,7 @@ df_summary = df_orders.reset_index().groupby('O_CUSTKEY').agg({
             'O_ORDERDATE': [min, max, purchase_duration, avg_frequency]
              })
 df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
-df_summary = df_summary.loc[df_summary['invoicedate_purchase_duration'] > 0]
+#df_summary = df_summary.loc[df_summary['invoicedate_purchase_duration'] > 0]
 
 # Display the results in Streamlit
 st.write(df_summary)
