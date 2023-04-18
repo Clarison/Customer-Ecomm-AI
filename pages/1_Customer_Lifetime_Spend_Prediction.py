@@ -101,7 +101,7 @@ chart = alt.Chart(grouped_data).mark_bar().encode(
 st.altair_chart(chart)
 
 # Create a histogram of duration in seconds
-chart = alt.Chart(grouped_data).mark_bar().encode(
+chart = alt.Chart(df_summary).mark_bar().encode(
     x=alt.X('o_orderdate_purchase_duration:Q', bin=alt.Bin(step=100), title='Duration (days)'),
     y=alt.Y('count()', title='Number of Occurrences')
 ).properties(
