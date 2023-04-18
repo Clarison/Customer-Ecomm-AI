@@ -13,7 +13,7 @@ conn = snowflake.connector.connect(
 )
     
 # Define a SQL query to fetch data from a table
-query = 'select * from orders'
+query = 'select o_orderkey,o_custkey,o_totalprice from orders'
 
 # Execute the query and fetch the results into a DataFrame
 @st.cache(allow_output_mutation=True)
@@ -31,7 +31,7 @@ st.write(df.head())
 
 
 #selecting only required columns
-df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
+#df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
 
 # Drop Null values
 df.dropna(subset=['O_CUSTKEY'], inplace=True)
