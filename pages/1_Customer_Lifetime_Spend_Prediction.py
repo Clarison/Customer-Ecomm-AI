@@ -28,3 +28,19 @@ df = get_data_from_snowflake(query)
 
 # Display the results in Streamlit
 st.write(df.head())
+
+#selecting only required columns
+df= df[['o_custkey','o_orderkey','o_totalprice','o_orderdate']]
+
+# Drop Null values
+df.dropna(subset=['o_custkey'], inplace=True)
+
+
+# Create a dataframe with orders
+df_orders = df.groupby(['o_custkey',
+                        'o_orderkey']).agg({'o_totalprice': sum,
+                                           'o_orderdate': max})
+
+# Display the results in Streamlit
+st.write(df_orders.head())
+
