@@ -74,3 +74,19 @@ df_summary = df_summary.sort_values('o_totalprice_count', ascending=False)
 
 # Display the results in Streamlit
 st.write(df_summary)
+
+# Group data by a column ('sales_count' in this example)
+grouped_data = df_summary.groupby('o_totalprice_count').size().reset_index(name='count')
+
+# Create an Altair bar chart
+chart = alt.Chart(grouped_data).mark_bar().encode(
+    x=alt.X('o_totalprice_count:O', title='Sales Count'),
+    y=alt.Y('count:Q', title='Total Instances')
+).properties(
+    width=600,
+    height=400,
+    title='Sales Count vs. Total Instances'
+)
+
+# Display the chart in Streamlit
+st.altair_chart(chart)
