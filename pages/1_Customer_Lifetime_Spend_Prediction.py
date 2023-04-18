@@ -77,7 +77,7 @@ def get_data_cleaned(query):
 
 df_summary=get_data_cleaned(df)
 # Display the results in Streamlit
-#st.write(df_summary)
+st.write(df_summary.head())
 
 
 
@@ -99,3 +99,13 @@ chart = alt.Chart(grouped_data).mark_bar().encode(
 
 # Display the chart in Streamlit
 st.altair_chart(chart)
+
+# Create a histogram of duration in seconds
+chart = alt.Chart(grouped_data).mark_bar().encode(
+    x=alt.X('duration:Q', bin=alt.Bin(step=1), title='Duration (days)'),
+    y=alt.Y('count()', title='Number of Occurrences')
+).properties(
+    width=600,
+    height=400,
+    title='Duration Histogram'
+)
