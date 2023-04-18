@@ -12,7 +12,7 @@ conn = snowflake.connector.connect(
     schema= st.secrets["schema"]
 )
 
-@st.cache
+
 # Define a SQL query to fetch data from a table
 query = 'select  o_custkey,o_orderkey,o_totalprice,o_orderdate from orders'
 
