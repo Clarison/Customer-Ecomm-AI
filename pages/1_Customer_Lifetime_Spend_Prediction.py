@@ -79,8 +79,13 @@ df_summary=get_data_cleaned(df)
 # Display the results in Streamlit
 #st.write(df_summary)
 
+
+
 # Group data by a column ('sales_count' in this example)
 grouped_data = df_summary.groupby('o_totalprice_count').size().reset_index(name='count')
+
+#filtering only for greater than 1
+grouped_data = grouped_data[grouped_data['o_totalprice_count'] > 1]
 
 # Create an Altair bar chart
 chart = alt.Chart(grouped_data).mark_bar().encode(
