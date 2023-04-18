@@ -3,8 +3,6 @@ import snowflake.connector
 import pandas as pd
 
 # Connect to Snowflake
-
-
 conn = snowflake.connector.connect(
     user= st.secrets["user"],
     password= st.secrets["password"],
@@ -14,11 +12,9 @@ conn = snowflake.connector.connect(
     schema= st.secrets["schema"]
 )
     
-
 # Define a SQL query to fetch data from a table
 query = 'select * from orders limit 100'
 
-# Execute the query and fetch the results
 # Execute the query and fetch the results into a DataFrame
 @st.cache(allow_output_mutation=True)
 def get_data_from_snowflake(query):
