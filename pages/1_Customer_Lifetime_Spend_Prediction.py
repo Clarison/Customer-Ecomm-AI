@@ -35,13 +35,13 @@ st.write(df.columns)
 df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
 
 # Drop Null values
-df.dropna(subset=['o_custkey'], inplace=True)
+df.dropna(subset=['O_CUSTKEY'], inplace=True)
 
 
 # Create a dataframe with orders
-df_orders = df.groupby(['o_custkey',
-                        'o_orderkey']).agg({'o_totalprice': sum,
-                                           'o_orderdate': max})
+df_orders = df.groupby(['O_CUSTKEY',
+                        'O_ORDERKEY']).agg({'O_TOTALPRICE': sum,
+                                           'O_ORDERDATE': max})
 
 # Display the results in Streamlit
 st.write(df_orders.head())
