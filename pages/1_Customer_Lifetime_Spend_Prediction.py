@@ -32,7 +32,7 @@ st.write(df.head())
 st.write(df.columns)
 
 #selecting only required columns
-df= df[['o_custkey','o_orderkey','o_totalprice','o_orderdate']]
+df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
 
 # Drop Null values
 df.dropna(subset=['o_custkey'], inplace=True)
