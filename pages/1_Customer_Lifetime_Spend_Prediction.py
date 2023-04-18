@@ -70,7 +70,7 @@ df_summary = df_orders.reset_index().groupby('O_CUSTKEY').agg({
 df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
 #df_summary = df_summary.loc[df_summary['invoicedate_purchase_duration'] > 0]
 
-df_summary = df_summary.sort_values('o_orderdate_purchase_frequency', ascending=False)
+df_summary = df_summary.sort_values('o_totalprice_count', ascending=False)
 
 # Display the results in Streamlit
 st.write(df_summary)
