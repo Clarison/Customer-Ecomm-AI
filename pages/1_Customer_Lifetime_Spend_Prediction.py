@@ -99,7 +99,7 @@ chart = alt.Chart(grouped_data).mark_bar().encode(
 
 # Display the chart in Streamlit
 st.altair_chart(chart)
-df_summary_hist = df_summary[df_summary['o_orderdate_purchase_duration']>1]]
+df_summary_hist = df_summary[df_summary['o_orderdate_purchase_duration']>1]
 
 # Create a histogram of duration in seconds
 chart = alt.Chart(df_summary_hist).mark_bar().encode(
