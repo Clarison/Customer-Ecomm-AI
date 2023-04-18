@@ -37,6 +37,8 @@ df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
 df.dropna(subset=['O_CUSTKEY'], inplace=True)
 
 
+
+
 # Sort by Age in ascending order
 df_orders = df.sort_values('O_CUSTKEY')
 
@@ -67,6 +69,8 @@ df_summary = df_orders.reset_index().groupby('O_CUSTKEY').agg({
              })
 df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
 #df_summary = df_summary.loc[df_summary['invoicedate_purchase_duration'] > 0]
+
+df_summary = df_summary.sort_values('o_orderdate_purchase_frequency', ascending=False)
 
 # Display the results in Streamlit
 st.write(df_summary)
