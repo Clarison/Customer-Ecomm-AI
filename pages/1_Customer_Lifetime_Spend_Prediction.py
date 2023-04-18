@@ -43,3 +43,30 @@ df_sorted_orders = df.sort_values('O_CUSTKEY')
 # Display the results in Streamlit
 st.write(df_sorted_orders)
 
+# total amount of purchases by each customer
+def groupby_mean(x):
+    return x.mean()
+
+def groupby_count(x):
+    return x.count()
+
+def purchase_duration(x):
+    return (x.max() - x.min()).days
+
+def avg_frequency(x):
+    return (x.max() - x.min()).days / x.count()
+
+groupby_mean.__name__ = 'avg'
+groupby_count.__name__ = 'count'
+purchase_duration.__name__ = 'purchase_duration'
+avg_frequency.__name__ = 'purchase_frequency'
+
+df_summary = df_orders.reset_index().groupby('O_CUSTKEY').agg({
+            'O_TOTALPRICE': [min, max, sum, groupby_mean, groupby_count],
+            'O_ORDERDATE': [min, max, purchase_duration, avg_frequency]
+             })
+df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
+df_summary = df_summary.loc[df_summary['invoicedate_purchase_duration'] > 0]
+
+# Display the results in Streamlit
+st.write(df_summary)
