@@ -37,13 +37,8 @@ df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
 df.dropna(subset=['O_CUSTKEY'], inplace=True)
 
 
-# Create a dataframe with orders
-df_orders = df.groupby(['O_CUSTKEY',
-                        'O_ORDERKEY']).agg({'O_TOTALPRICE': sum,
-                                           'O_ORDERDATE': max})
-
 # Sort by Age in ascending order
-df_sorted_orders = df_orders.sort_values('O_CUSTKEY')
+df_sorted_orders = df.sort_values('O_CUSTKEY')
 
 # Display the results in Streamlit
 st.write(df_sorted_orders)
