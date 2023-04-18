@@ -66,13 +66,13 @@ def get_data_cleaned(query):
     avg_frequency.__name__ = 'purchase_frequency'
 
     df_summary = df_orders.reset_index().groupby('SS_CUSTOMER_SK').agg({
-                'SS_SALE_PRICE': [min, max, sum, groupby_mean, groupby_count],
+                'SS_SALEs_PRICE': [min, max, sum, groupby_mean, groupby_count],
                 'D_DATE': [min, max, purchase_duration, avg_frequency]
                  })
     df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
     #df_summary = df_summary.loc[df_summary['invoicedate_purchase_duration'] > 0]
 
-    df_summary = df_summary.sort_values('ss_sale_price_count', ascending=False)
+    df_summary = df_summary.sort_values('ss_sales_price_count', ascending=False)
     return df_summary
 
 df_summary=get_data_cleaned(df)
@@ -82,14 +82,14 @@ st.write(df_summary.head())
 
 
 # Group data by a column ('sales_count' in this example)
-grouped_data = df_summary.groupby('ss_sale_price_count').size().reset_index(name='count')
+grouped_data = df_summary.groupby('ss_sales_price_count').size().reset_index(name='count')
 
 #filtering only for greater than 1
-grouped_data = grouped_data[grouped_data['ss_sale_price_count'] > 1]
+grouped_data = grouped_data[grouped_data['ss_sales_price_count'] > 1]
 
 # Create an Altair bar chart
 chart = alt.Chart(grouped_data).mark_bar().encode(
-    x=alt.X('ss_sale_price_count:O', title='Sales Count'),
+    x=alt.X('ss_sales_price_count:O', title='Sales Count'),
     y=alt.Y('count:Q', title='Total Instances')
 ).properties(
     width=600,
