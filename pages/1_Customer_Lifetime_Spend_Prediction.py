@@ -66,7 +66,7 @@ def get_data_cleaned(query):
     avg_frequency.__name__ = 'purchase_frequency'
 
     df_summary = df_orders.reset_index().groupby('SS_CUSTOMER_SK').agg({
-                'SS_SALEs_PRICE': [min, max, sum, groupby_mean, groupby_count],
+                'SS_SALES_PRICE': [min, max, sum, groupby_mean, groupby_count],
                 'D_DATE': [min, max, purchase_duration, avg_frequency]
                  })
     df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
