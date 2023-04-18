@@ -29,6 +29,8 @@ df = get_data_from_snowflake(query)
 # Display the results in Streamlit
 st.write(df.head())
 
+st.write(df.columns)
+
 #selecting only required columns
 df= df[['o_custkey','o_orderkey','o_totalprice','o_orderdate']]
 
