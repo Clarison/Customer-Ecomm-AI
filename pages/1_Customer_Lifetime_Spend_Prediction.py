@@ -42,6 +42,9 @@ df_orders = df.groupby(['O_CUSTKEY',
                         'O_ORDERKEY']).agg({'O_TOTALPRICE': sum,
                                            'O_ORDERDATE': max})
 
+# Sort by Age in ascending order
+df_sorted_orders = df_orders.sort_values('O_CUSTKEY')
+
 # Display the results in Streamlit
-st.write(df_orders)
+st.write(df_sorted_orders)
 
