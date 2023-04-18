@@ -29,7 +29,6 @@ df = get_data_from_snowflake(query)
 # Display the results in Streamlit
 st.write(df.head())
 
-st.write(df.columns)
 
 #selecting only required columns
 df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
@@ -44,5 +43,5 @@ df_orders = df.groupby(['O_CUSTKEY',
                                            'O_ORDERDATE': max})
 
 # Display the results in Streamlit
-st.write(df_orders.head())
+st.write(df_orders)
 
