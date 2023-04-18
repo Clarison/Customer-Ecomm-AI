@@ -13,7 +13,7 @@ conn = snowflake.connector.connect(
 )
     
 # Define a SQL query to fetch data from a table
-query = 'select o_orderkey,o_custkey,o_totalprice from orders'
+query = 'select o_orderkey,o_custkey,o_totalprice from orders limit 100000'
 
 # Execute the query and fetch the results into a DataFrame
 @st.cache(allow_output_mutation=True)
