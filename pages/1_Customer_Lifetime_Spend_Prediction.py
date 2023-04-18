@@ -23,4 +23,4 @@ results = cur.fetchall()
 df = pd.DataFrame(results, columns=[i[0] for i in cur.description])
 
 # Display the results in Streamlit
-st.write(df)
+st.write(df.head())
