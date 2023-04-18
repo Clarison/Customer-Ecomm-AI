@@ -43,7 +43,7 @@ df.dropna(subset=['O_CUSTKEY'], inplace=True)
 df_orders = df.sort_values('O_CUSTKEY')
 
 # Display the results in Streamlit
-st.write(df_orders)
+#st.write(df_orders)
 
 # total amount of purchases by each customer
 def groupby_mean(x):
