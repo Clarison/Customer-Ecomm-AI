@@ -14,7 +14,7 @@ conn = snowflake.connector.connect(
 )
     
 # Define a SQL query to fetch data from a table
-query = 'select o_custkey,o_totalprice,o_orderdate from orders limit 100000'
+query = 'select * from CLV'
 
 # Execute the query and fetch the results into a DataFrame
 @st.cache(allow_output_mutation=True)
@@ -30,7 +30,7 @@ df = get_data_from_snowflake(query)
 # Display the results in Streamlit
 st.write(df.head())
 
-
+/*
 #selecting only required columns
 #df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
 @st.cache(allow_output_mutation=True)
@@ -115,3 +115,4 @@ chart = alt.Chart(df_summary_hist).mark_bar().encode(
 
 # Display the chart in Streamlit
 st.altair_chart(chart)
+*/
