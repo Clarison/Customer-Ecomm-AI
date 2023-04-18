@@ -14,7 +14,7 @@ conn = snowflake.connector.connect(
 
 
 # Define a SQL query to fetch data from a table
-query = 'select  o_custkey,o_orderkey,o_totalprice,o_orderdate from orders limit 100'
+query = 'select * from orders limit 100'
 
 # Execute the query and fetch the results
 cur = conn.cursor()
