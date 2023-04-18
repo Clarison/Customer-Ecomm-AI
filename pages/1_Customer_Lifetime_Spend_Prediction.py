@@ -3,16 +3,19 @@ import snowflake.connector
 import pandas as pd
 
 # Connect to Snowflake
-conn = snowflake.connector.connect(
-    user= st.secrets["user"],
-    password= st.secrets["password"],
-    account= st.secrets["account"],
-    warehouse= st.secrets["warehouse"],
-    database= st.secrets["database"],
-    schema= st.secrets["schema"]
-)
+@st.cache(allow_output_mutation=True)
+def get_snowflake_connection():
+    conn = snowflake.connector.connect(
+        user= st.secrets["user"],
+        password= st.secrets["password"],
+        account= st.secrets["account"],
+        warehouse= st.secrets["warehouse"],
+        database= st.secrets["database"],
+        schema= st.secrets["schema"]
+    )
+    return conn
 
-
+conn = get_snowflake_connection()
 # Define a SQL query to fetch data from a table
 query = 'select * from orders limit 100'
 
