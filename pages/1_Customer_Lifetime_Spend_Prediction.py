@@ -38,10 +38,10 @@ df.dropna(subset=['O_CUSTKEY'], inplace=True)
 
 
 # Sort by Age in ascending order
-df_sorted_orders = df.sort_values('O_CUSTKEY')
+df_orders = df.sort_values('O_CUSTKEY')
 
 # Display the results in Streamlit
-st.write(df_sorted_orders)
+st.write(df_orders)
 
 # total amount of purchases by each customer
 def groupby_mean(x):
