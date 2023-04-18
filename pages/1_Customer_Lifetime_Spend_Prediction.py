@@ -73,7 +73,7 @@ df_summary.columns = ['_'.join(col).lower() for col in df_summary.columns]
 df_summary = df_summary.sort_values('o_totalprice_count', ascending=False)
 
 # Display the results in Streamlit
-st.write(df_summary)
+#st.write(df_summary)
 
 # Group data by a column ('sales_count' in this example)
 grouped_data = df_summary.groupby('o_totalprice_count').size().reset_index(name='count')
