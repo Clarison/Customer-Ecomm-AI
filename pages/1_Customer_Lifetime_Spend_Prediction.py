@@ -168,4 +168,4 @@ def get_data_predict(query):
 
 df_sample_set=get_data_predict(df)
 
-st.write(df_sample_set)
+st.write(df_sample_set.head(100))
