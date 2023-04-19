@@ -137,8 +137,33 @@ def get_data_predict(query):
     df_data.columns = ['_'.join(col).lower() for col in df_data.columns]
     df_data = df_data.reset_index()
     df_data=df_data.rename(columns={'sales_groupby_mean':'sales_avg','sales_groupby_count':'sales_count'})
+    map_date_month = {str(x)[:10]: 'M_%s' % (i+1) for i, x in enumerate(
+                        sorted(df_data.reset_index()['InvoiceDate'].unique(), reverse=True))}
+    df_data['M'] = df_data['InvoiceDate'].apply(lambda x: map_date_month[str(x)[:10]])
+    df_features = pd.pivot_table(
+                    df_data.loc[df_data['M'] != 'M_1'], 
+                    values=['sales_sum', 'sales_avg', 'sales_count'], 
+                    columns='M', 
+                    index='CustomerID')
+    df_features.reset_index()
+    df_features.columns = ['_'.join(col) for col in df_features.columns]
+    df_features.reset_index(level=0, inplace=True)
+
+    # Let us fill in the Null values with 0
+    df_features.fillna(0, inplace=True)
+
+    # Select the target
+    df_target = df_data.loc[df_data['M'] == 'M_1', ['CustomerID', 'sales_sum']]
+    df_target.columns = ['CustomerID', 'CLV_'+clv_freq]
+
+    df_sample_set = df_features.merge(
+                    df_target, 
+                    left_on='CustomerID', 
+                    right_on='CustomerID',
+                    how='left')
+    df_sample_set.fillna(0, inplace=True)
     
-    return df_data
+    return df_sample_set
 
 df_sample_set=get_data_predict(df)
 
