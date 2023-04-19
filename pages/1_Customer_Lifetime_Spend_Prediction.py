@@ -115,13 +115,14 @@ chart = alt.Chart(df_summary_hist).mark_bar().encode(
 
 # rename columns
 df = df.rename(columns={'SS_CUSTOMER_SK': 'CustomerID', 'D_DATE': 'InvoiceDate','SS_SALES_PRICE': 'Sales'})
-
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
 # Display the chart in Streamlit
 st.altair_chart(chart)
 
 @st.cache_data()
 def get_data_predict(query):
     clv_freq = '3M'
+    
     df_data = df.reset_index().groupby([
                 'CustomerID',
                 pd.Grouper(key='InvoiceDate', freq=clv_freq)
