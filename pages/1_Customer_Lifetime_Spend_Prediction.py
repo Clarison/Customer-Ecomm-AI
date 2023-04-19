@@ -162,7 +162,7 @@ def get_data_predict(query):
                     right_on='CustomerID',
                     how='left')
     df_sample_set.fillna(0, inplace=True)
-    df_sample_set = df_sdf_sample_setummary.sort_values('CLV_3M', ascending=False)
+    df_sample_set = df_sample_set.sort_values('CLV_3M', ascending=False)
     
     return df_sample_set
 
