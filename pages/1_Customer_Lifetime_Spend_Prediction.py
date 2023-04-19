@@ -136,6 +136,7 @@ def get_data_predict(query):
                 ]).agg({'Sales': [sum, groupby_mean, groupby_count],})
     df_data.columns = ['_'.join(col).lower() for col in df_data.columns]
     df_data = df_data.reset_index()
+    df_data=df_data.rename(columns={'sales_groupby_mean':'sales_avg','sales_groupby_count':'sales_count'})
     
     return df_data
 
