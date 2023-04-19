@@ -14,7 +14,7 @@ conn = snowflake.connector.connect(
 )
     
 # Define a SQL query to fetch data from a table
-query = 'select * from CLV where ss_sales_price > 20 limit 10000'
+query = 'select * from CLV where ss_sales_price > 20 and where d_date > '2002-10-01' limit 10000'
 
 # Execute the query and fetch the results into a DataFrame
 @st.cache_data()
