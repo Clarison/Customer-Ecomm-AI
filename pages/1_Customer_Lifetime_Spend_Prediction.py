@@ -121,6 +121,13 @@ st.altair_chart(chart)
 
 @st.cache_data()
 def get_data_predict(query):
+    
+    def groupby_mean(x):
+        return x.mean()
+
+    def groupby_count(x):
+        return x.count()
+    
     clv_freq = '3M'
     
     df_data = df.reset_index().groupby([
