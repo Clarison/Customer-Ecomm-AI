@@ -17,7 +17,7 @@ conn = snowflake.connector.connect(
 query = 'select * from CLV'
 
 # Execute the query and fetch the results into a DataFrame
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def get_data_from_snowflake(query):
     cur = conn.cursor()
     cur.execute(query)
@@ -33,7 +33,7 @@ st.write(df.head())
 
 #selecting only required columns
 #df= df[['O_CUSTKEY','O_ORDERKEY','O_TOTALPRICE','O_ORDERDATE']]
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def get_data_cleaned(query):
     # Drop Null values
     df.dropna(subset=['SS_CUSTOMER_SK'], inplace=True)
@@ -119,7 +119,7 @@ df = df.rename(columns={'SS_CUSTOMER_SK': 'CustomerID', 'D_DATE': 'InvoiceDate',
 # Display the chart in Streamlit
 st.altair_chart(chart)
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def get_data_predict(query):
     clv_freq = '3M'
     df_data = df.reset_index().groupby([
