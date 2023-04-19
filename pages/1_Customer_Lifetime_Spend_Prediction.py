@@ -85,7 +85,7 @@ st.write(df_summary.head())
 grouped_data = df_summary.groupby('ss_sales_price_count').size().reset_index(name='count')
 
 #filtering only for greater than 1
-grouped_data = grouped_data[grouped_data['ss_sales_price_count'] > 2]
+grouped_data = grouped_data[grouped_data['ss_sales_price_count'] > 1]
 
 # Create an Altair bar chart
 chart = alt.Chart(grouped_data).mark_bar().encode(
