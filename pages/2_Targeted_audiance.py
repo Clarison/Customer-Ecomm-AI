@@ -38,12 +38,9 @@ st.write(selected_value)
 query = f"SELECT * FROM Item WHERE i_item_sk = '{selected_value}'"
 
 # Execute the query
-cur = conn.cursor()
-cur.execute(query)
-result = cur.fetchall()
-
+df = get_data_from_snowflake(query)
 # Display the result
-st.write(result)
+st.write(df)
 
     
 
