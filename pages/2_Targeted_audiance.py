@@ -37,7 +37,7 @@ st.write(selected_value)
 
 
 
-query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_ITEM_DESC,I_CLASS,I_CATEGORY FROM Item WHERE i_item_sk = '{selected_value}'"
+query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{selected_value}'"
 
 # Execute the query
 df = get_data_from_snowflake(query)
