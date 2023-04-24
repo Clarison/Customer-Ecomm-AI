@@ -44,10 +44,7 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
-# Display the row as key-value pairs using Streamlit
-st.write("### Selected row:")
-for col_name, col_val in df.iteritems():
-    st.write(f"- {col_name}: {col_val}")
+
     
 query = f"select * from  customer_pattern where ss_item_sk= '{selected_value}' limit 1000"
 
