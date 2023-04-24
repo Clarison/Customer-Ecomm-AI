@@ -52,7 +52,7 @@ query = f"select * from  customer_pattern where ss_item_sk= '{selected_value}' l
 df = get_data_from_snowflake(query)
 
 # Replace values in the 'gender' column
-df['Gender'] = df['CD_GENDER'].replace({'F': 'Female', 'M': 'Male'})
+df['CD_GENDER'] = df['CD_GENDER'].replace({'F': 'Female', 'M': 'Male'})
 # Display the result
 st.write(df.head())
 
