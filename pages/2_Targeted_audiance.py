@@ -53,6 +53,14 @@ df = get_data_from_snowflake(query)
 
 # Replace values in the 'gender' column
 df['CD_GENDER'] = df['CD_GENDER'].replace({'F': 'Female', 'M': 'Male'})
+
+df['CD_MARITAL_STATUS'] = df['CD_MARITAL_STATUS'].replace({
+    'S': 'Single',
+    'M': 'Married',
+    'D': 'Divorced',
+    'W': 'Widowed',
+    'U': 'Unknown'
+})
 # Display the result
 st.write(df.head())
 
