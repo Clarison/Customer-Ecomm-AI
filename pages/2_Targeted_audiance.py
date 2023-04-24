@@ -50,6 +50,9 @@ query = f"select * from  customer_pattern where ss_item_sk= '{selected_value}' l
 
 # Execute the query
 df = get_data_from_snowflake(query)
+
+# Replace values in the 'gender' column
+df['Gender'] = df['CD_GENDER'].replace({'F': 'Female', 'M': 'Male'})
 # Display the result
 st.write(df.head())
 
@@ -59,6 +62,9 @@ most_common_education = df['CD_EDUCATION_STATUS'].mode()[0]
 most_common_gender = df['CD_GENDER'].mode()[0]
 most_common_marital = df['CD_MARITAL_STATUS'].mode()[0]
 most_common_credit = df['CD_CREDIT_RATING'].mode()[0]
+avg_lower_bound=df['IB_LOWER_BOUND'].mean()
+avg_upper_bound=df['IB_UPPER_BOUND'].mean()
+avg_purchase_estimate=df['CD_PURCHASE_ESTIMATE'].mean()
 
 
 st.write(most_common_education)
