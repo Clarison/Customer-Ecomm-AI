@@ -48,6 +48,18 @@ query = f"select * from  customer_pattern where ss_item_sk= '{selected_value}' l
 # Execute the query
 df = get_data_from_snowflake(query)
 # Display the result
-st.write(df)
-    
+st.write(df.head())
+
+
+# find the most common value in the 'col1' column
+most_common_education = df['CD_EDUCATION_STATUS'].mode()[0]
+most_common_gender = df['CD_GENDER'].mode()[0]
+most_common_marital = df['CD_MARITAL_STATUS'].mode()[0]
+most_common_credit = df['CD_CREDIT_RATING'].mode()[0]
+
+
+st.write(most_common_education)
+st.write(most_common_gender)
+st.write(most_common_marital)
+st.write(most_common_credit)
 
