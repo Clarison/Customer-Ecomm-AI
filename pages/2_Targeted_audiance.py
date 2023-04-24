@@ -27,11 +27,11 @@ def get_data_from_snowflake(query):
 
 df = get_data_from_snowflake(query)
 
-
+column_data = df["SS_ITEM_SK"]
     
 st.write("Select the Product to view its targeted audience:")
 # Display the results in Streamlit
-st.write(df.head())
+st.write(column_data.head())
 
     
 
