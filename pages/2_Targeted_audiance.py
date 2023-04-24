@@ -27,8 +27,11 @@ def get_data_from_snowflake(query):
 
 df = get_data_from_snowflake(query)
 
+
+    
+st.write("Select the Product to view its targeted audience:")
 # Display the results in Streamlit
 st.write(df.head())
 
     
-st.write("Hello, world!")
+
