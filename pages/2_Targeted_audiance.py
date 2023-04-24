@@ -62,7 +62,7 @@ df['CD_MARITAL_STATUS'] = df['CD_MARITAL_STATUS'].replace({
     'U': 'Unknown'
 })
 # Display the result
-st.write(df.head())
+#st.write(df.head())
 
 
 # find the most common value in the 'col1' column
@@ -80,3 +80,4 @@ st.write(most_common_gender)
 st.write(most_common_marital)
 st.write(most_common_credit)
 
+st.write(f"Most of our customers for this Product are {most_common_marital} {most_common_gender} having {most_common_education} eduction.Their avgerae Purchacing power is {avg_purchase_estimate} and Income somewhere between  {avg_lower_bound} and {avg_upper_bound} also having credit score which is {most_common_credit}")
