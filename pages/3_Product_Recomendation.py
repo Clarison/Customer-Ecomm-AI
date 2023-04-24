@@ -31,7 +31,7 @@ def get_data_from_snowflake(query):
 
 df = get_data_from_snowflake(query)
 
-st.write(df.head())
+#st.write(df.head())
 
 
 df_grouped = df.groupby('SS_TICKET_NUMBER')['SS_ITEM_SK'].agg(lambda x: ','.join(map(str, x))).reset_index()
@@ -48,6 +48,9 @@ if len(frequent_itemsets) > 0:
     rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
     # convert frozen sets to regular sets
     rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
+    # rename the columns
+    rules.rename(columns={'antecedents': 'Product A', 'consequents': 'Product B'}, inplace=True)
+
 
     # print the resulting association rules
     st.write(rules)
