@@ -70,9 +70,9 @@ most_common_education = df['CD_EDUCATION_STATUS'].mode()[0]
 most_common_gender = df['CD_GENDER'].mode()[0]
 most_common_marital = df['CD_MARITAL_STATUS'].mode()[0]
 most_common_credit = df['CD_CREDIT_RATING'].mode()[0]
-avg_lower_bound=df['IB_LOWER_BOUND'].mean()
-avg_upper_bound=df['IB_UPPER_BOUND'].mean()
-avg_purchase_estimate=df['CD_PURCHASE_ESTIMATE'].mean()
+avg_lower_bound= round(df['IB_LOWER_BOUND'].mean())
+avg_upper_bound=round(df['IB_UPPER_BOUND'].mean())
+avg_purchase_estimate=round(df['CD_PURCHASE_ESTIMATE'].mean())
 
 
 
