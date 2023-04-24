@@ -50,7 +50,8 @@ if len(frequent_itemsets) > 0:
     rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
     # rename the columns
     rules.rename(columns={'antecedents': 'Product A', 'consequents': 'Product B'}, inplace=True)
-
+    # select only the desired columns
+    rules = rules.loc[:, ['Product A', 'Product B', 'confidence']]
 
     # print the resulting association rules
     st.write(rules)
