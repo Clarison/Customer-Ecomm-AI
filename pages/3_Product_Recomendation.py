@@ -46,6 +46,8 @@ frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 if len(frequent_itemsets) > 0:
     # generate association rules from frequent itemsets
     rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
+    # convert frozen sets to regular sets
+    rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
 
     # print the resulting association rules
     st.write(rules)
