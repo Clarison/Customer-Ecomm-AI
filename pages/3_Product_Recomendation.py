@@ -13,4 +13,4 @@ conn = snowflake.connector.connect(
     schema= st.secrets["schema"]
 )
 
-st.write(Recomended Products Pairs)
+st.write('Recomended Products Pairs')
