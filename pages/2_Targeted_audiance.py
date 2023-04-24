@@ -33,7 +33,7 @@ st.write("Select the Product to view its targeted audience:")
 
 selected_value = st.selectbox("Select a value", column_data)
 # Display the results in Streamlit
-st.write(column_data.head())
+st.write(selected_value)
 
     
 
