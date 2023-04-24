@@ -40,7 +40,7 @@ df_grouped = df.groupby('SS_TICKET_NUMBER')['SS_ITEM_SK'].agg(lambda x: ','.join
 df_encoded = df_grouped['SS_ITEM_SK'].str.get_dummies(',')
 
 # apply Apriori algorithm to identify frequent itemsets
-frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
+frequent_itemsets = apriori(df_encoded, min_support=0.004, use_colnames=True)
 
 # check if there are any frequent itemsets
 if len(frequent_itemsets) > 0:
