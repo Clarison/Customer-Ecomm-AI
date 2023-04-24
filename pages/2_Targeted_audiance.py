@@ -31,7 +31,7 @@ column_data = df["SS_ITEM_SK"]
     
 st.write("Select the Product to view its targeted audience:")
 
-selected_value = st.selectbox("Select a ProductID", column_data)
+selected_value = st.selectbox("Select a Product ID", column_data)
 # Display the results in Streamlit
 st.write(selected_value)
 
