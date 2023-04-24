@@ -30,3 +30,21 @@ def get_data_from_snowflake(query):
 df = get_data_from_snowflake(query)
 
 st.write(df.head())
+
+# transform dataset into a one-hot encoded format
+df_encoded = df_grouped['SS_ITEM_SK'].str.get_dummies(',')
+
+# apply Apriori algorithm to identify frequent itemsets
+frequent_itemsets = apriori(df_encoded, min_support=0.05, use_colnames=True)
+
+# check if there are any frequent itemsets
+if len(frequent_itemsets) > 0:
+    # generate association rules from frequent itemsets
+    rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
+
+    # print the resulting association rules
+    st.write(rules)
+else:
+    st.write("No frequent itemsets found with the given minimum support value.")
+
+
