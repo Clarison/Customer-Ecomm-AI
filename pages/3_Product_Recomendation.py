@@ -3,6 +3,8 @@ import snowflake.connector
 import pandas as pd
 import altair as alt
 
+from mlxtend.frequent_patterns import apriori, association_rules
+
 # Connect to Snowflake
 conn = snowflake.connector.connect(
     user= st.secrets["user"],
@@ -30,6 +32,9 @@ def get_data_from_snowflake(query):
 df = get_data_from_snowflake(query)
 
 st.write(df.head())
+
+
+df_grouped = df.groupby('SS_TICKET_NUMBER')['SS_ITEM_SK'].agg(lambda x: ','.join(map(str, x))).reset_index()
 
 # transform dataset into a one-hot encoded format
 df_encoded = df_grouped['SS_ITEM_SK'].str.get_dummies(',')
