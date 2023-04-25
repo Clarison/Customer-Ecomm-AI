@@ -63,6 +63,8 @@ st.write("Select a product you would like to buy :")
 # Create the dropdown select
 product = st.selectbox('Select a product', rules['Product A'])
 
+product=product[2:-2]
+
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{product}'"
 
 # Execute the query
