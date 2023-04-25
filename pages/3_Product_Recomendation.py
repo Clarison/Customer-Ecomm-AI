@@ -46,6 +46,8 @@ frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 if len(frequent_itemsets) > 0:
     # generate association rules from frequent itemsets
     rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
+    # create dictionary of antecedents and consequents
+    antecedent_consequent_dict = dict(zip(rules['antecedents'], rules['consequents']))
     # convert frozen sets to regular sets
     rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
     # rename the columns
@@ -75,9 +77,8 @@ st.write(df)
 # Display the filtered DataFrame
 st.write(product)
 
+# create selectbox to choose antecedent
+selected_antecedent = st.selectbox('Select Antecedent:', df['antecedents'].unique())
 
-
-# Filter the DataFrame
-filtered_df = df[df['Product A'] == selected_option]
-
-st.write(filtered_df.head())
+# display consequent(s) for selected antecedent
+st.write('Consequent(s):', antecedent_consequent_dict[selected_antecedent])
