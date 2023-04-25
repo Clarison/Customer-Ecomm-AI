@@ -90,7 +90,7 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
-product_b_str = '(' + ','.join(map(str, product_b)) + ')'
+product_b_str =   ','.join(map(str, product_b)) 
 st.write(product_b_str)
 st.write("You may also like to look at before you complete your purchase :")
 
