@@ -86,8 +86,14 @@ def display_consequent(selected_antecedent):
     return consequents
 
 
+
 selected_antecedent=str(selected_option)[1:-1]
+
+# Display the filtered DataFrame
+st.write(selected_antecedent)
+
 consequents = display_consequent(selected_antecedent)
+
 st.write("Consequents:", consequents)
 
 
