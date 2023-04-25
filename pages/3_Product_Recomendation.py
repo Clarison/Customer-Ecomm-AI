@@ -77,8 +77,7 @@ st.write(df)
 # Display the filtered DataFrame
 st.write(product)
 
-# create selectbox to choose antecedent
-selected_antecedent = st.selectbox('Select Antecedent:', rules['antecedents'].unique())
+
 
 # display consequent(s) for selected antecedent
-st.write('Consequent(s):', antecedent_consequent_dict[selected_antecedent])
+st.write('Consequent(s):', antecedent_consequent_dict[product])
