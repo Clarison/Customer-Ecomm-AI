@@ -54,8 +54,17 @@ if len(frequent_itemsets) > 0:
     rules = rules.loc[:, ['Product A', 'Product B', 'confidence']]
 
     # print the resulting association rules
-    st.write(rules)
+    st.write(rules.head())
 else:
     st.write("No frequent itemsets found with the given minimum support value.")
 
+st.write("Select a product you would like to buy :")
 
+# Create the dropdown select
+product = st.selectbox('Select a product', rules['Product A'].unique())
+
+# Filter the DataFrame
+filtered_df = df[df['Product A'] == product]
+
+# Display the filtered DataFrame
+st.write(filtered_df)
