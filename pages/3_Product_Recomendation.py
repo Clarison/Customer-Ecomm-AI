@@ -62,7 +62,7 @@ else:
 
 st.write("Select a product you would like to buy :")
 
-st.write(antecedent_consequent_dict)
+st.write({str(k): v for k, v in antecedent_consequent_dict.items()})
 
 # Create the dropdown select
 product = st.selectbox('Select a product', rules['Product A'])
