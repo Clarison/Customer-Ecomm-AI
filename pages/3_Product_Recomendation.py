@@ -93,6 +93,11 @@ st.write(df)
 product_b_str =   ','.join(map(str, product_b)) 
 st.write(product_b_str)
 st.write("You may also like to look at before you complete your purchase :")
+query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in ['{product_b_str}']"
 
+# Execute the query
+df = get_data_from_snowflake(query)
+# Display the result
+st.write(df)
 
 
