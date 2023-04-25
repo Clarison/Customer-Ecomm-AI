@@ -90,6 +90,11 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
+# concatenate the values in the Product B column into a comma-separated string
+product_b_str = ','.join(rules['Product B'].apply(lambda x: ','.join(list(x))).unique())
+
+# display the resulting string
+st.write(product_b_str)
 
 st.write("You may also like to look at before you complete your purchase :")
 
