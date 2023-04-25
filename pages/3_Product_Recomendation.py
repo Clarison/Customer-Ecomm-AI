@@ -66,4 +66,4 @@ product = st.selectbox('Select a product', rules['Product A'])
 
 
 # Display the filtered DataFrame
-st.write(filtered_df)
+st.write(product)
