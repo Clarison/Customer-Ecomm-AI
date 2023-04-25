@@ -46,7 +46,6 @@ frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 if len(frequent_itemsets) > 0:
     # generate association rules from frequent itemsets
     rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
-    new=rules
     # convert frozen sets to regular sets
     rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
     # rename the columns
@@ -62,7 +61,7 @@ else:
 st.write("Select a product you would like to buy :")
 
 # Create the dropdown select
-product = st.selectbox('Select a product', new['antecedents'])
+product = st.selectbox('Select a product', rules['Product A'])
 
 
 
