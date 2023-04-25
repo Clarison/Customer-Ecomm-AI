@@ -65,12 +65,12 @@ product = st.selectbox('Select a product', rules['Product A'])
 
 product=list(product)[2:-2]
 
-query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{product}'"
+#query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{product}'"
 
 # Execute the query
-df = get_data_from_snowflake(query)
+#df = get_data_from_snowflake(query)
 # Display the result
-st.write(df)
+#st.write(df)
 
 # Display the filtered DataFrame
 st.write(product)
