@@ -61,7 +61,7 @@ else:
 st.write("Select a product you would like to buy :")
 
 # Create the dropdown select
-product = st.selectbox('Select a product', rules['Product A'])
+product = st.selectbox('Select a product', rules['Product A'][2:-2])
 
 
 
