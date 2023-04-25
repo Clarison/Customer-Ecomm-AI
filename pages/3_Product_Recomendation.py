@@ -78,5 +78,17 @@ st.write(df)
 st.write(selected_option)
 
 
+def display_consequent(selected_antecedent):
+    consequents = set()
+    for itemset in antecedent_consequent_dict:
+        if selected_antecedent in itemset:
+            consequents |= antecedent_consequent_dict[itemset]
+    return consequents
+
+
+selected_antecedent=str(selected_option)[1:-1]
+consequents = display_consequent(selected_antecedent)
+st.write("Consequents:", consequents)
+
 
 
