@@ -65,7 +65,7 @@ st.write("Select a product you would like to buy :")
 
 # Create the dropdown select
 product = st.selectbox('Select a product', rules['Product A'])
-
+product_a_str ='(' + ','.join(map(str, product)) + ')'
 
 # find the corresponding value(s) of Product B in antecedent_consequent_dict
 product_b = antecedent_consequent_dict.get(frozenset(product), None)
@@ -83,7 +83,7 @@ st.write("The Details For the product you like to buy are  :")
 selected_option=product
 product=str(product)[2:-2]
 
-query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{product}'"
+query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_a_str}"
 
 # Execute the query
 df = get_data_from_snowflake(query)
