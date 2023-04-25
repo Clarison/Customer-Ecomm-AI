@@ -78,7 +78,7 @@ st.write(df)
 st.write(product)
 
 # create selectbox to choose antecedent
-selected_antecedent = st.selectbox('Select Antecedent:', df['antecedents'].unique())
+selected_antecedent = st.selectbox('Select Antecedent:', rules['antecedents'].unique())
 
 # display consequent(s) for selected antecedent
 st.write('Consequent(s):', antecedent_consequent_dict[selected_antecedent])
