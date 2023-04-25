@@ -92,9 +92,6 @@ selected_antecedent=str(selected_option)[1:-1]
 # Display the filtered DataFrame
 st.write(selected_antecedent)
 
- 
-
-st.write(antecedent_consequent_dict)
 
 consequents = display_consequent(selected_antecedent)
 
