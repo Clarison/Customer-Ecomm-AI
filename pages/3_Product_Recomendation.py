@@ -66,6 +66,18 @@ st.write({str(k): v for k, v in antecedent_consequent_dict.items()})
 
 # Create the dropdown select
 product = st.selectbox('Select a product', rules['Product A'])
+
+
+# find the corresponding value(s) of Product B in antecedent_consequent_dict
+product_b = antecedent_consequent_dict.get(frozenset(product), None)
+
+# display the result
+if product_b is not None:
+    st.write(f'Product B(s) corresponding to {product_a}: {list(product_b)}')
+else:
+    st.write(f'No Product B(s) found for {product_a}.')
+    
+    
 selected_option=product
 product=str(product)[2:-2]
 
