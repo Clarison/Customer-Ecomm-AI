@@ -80,8 +80,7 @@ product_b = antecedent_consequent_dict.get(frozenset(product), None)
 
 st.write("The Details For the product you like to buy are  :")
 
-selected_option=product
-product=str(product)[2:-2]
+
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_a_str}"
 
