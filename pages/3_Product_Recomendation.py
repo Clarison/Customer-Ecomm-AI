@@ -73,9 +73,9 @@ product_b = antecedent_consequent_dict.get(frozenset(product), None)
 
 # display the result
 if product_b is not None:
-    st.write(f'Product B(s) corresponding to {product_a}: {list(product_b)}')
+    st.write(f'Product B(s) corresponding to {product}: {list(product_b)}')
 else:
-    st.write(f'No Product B(s) found for {product_a}.')
+    st.write(f'No Product B(s) found for {product}.')
     
     
 selected_option=product
