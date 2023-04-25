@@ -62,7 +62,6 @@ else:
 
 st.write("Select a product you would like to buy :")
 
-st.write({str(k): v for k, v in antecedent_consequent_dict.items()})
 
 # Create the dropdown select
 product = st.selectbox('Select a product', rules['Product A'])
@@ -77,7 +76,10 @@ if product_b is not None:
 else:
     st.write(f'No Product B(s) found for {product}.')
     
-    
+ 
+
+st.write("The Details For the product you like to buy are  :")
+
 selected_option=product
 product=str(product)[2:-2]
 
@@ -88,28 +90,8 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
-# Display the filtered DataFrame
-st.write(selected_option)
 
-
-def display_consequent(selected_antecedent):
-    consequents = set()
-    for itemset in antecedent_consequent_dict:
-        if selected_antecedent in itemset:
-            consequents |= antecedent_consequent_dict[itemset]
-    return consequents
-
-
-
-selected_antecedent=str(selected_option)[1:-1]
-
-# Display the filtered DataFrame
-st.write(selected_antecedent)
-
-
-consequents = display_consequent(selected_antecedent)
-
-st.write("Consequents:", consequents)
+st.write("You may also like to look at before you complete your purchase :")
 
 
 
