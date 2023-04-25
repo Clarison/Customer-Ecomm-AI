@@ -71,10 +71,10 @@ product = st.selectbox('Select a product', rules['Product A'])
 product_b = antecedent_consequent_dict.get(frozenset(product), None)
 
 # display the result
-if product_b is not None:
-    st.write(f'Product(s) mostly useful {product} is {list(product_b)}')
-else:
-    st.write(f'No Product B(s) found for {product}.')
+#if product_b is not None:
+ #   st.write(f'Product(s) mostly useful {product} is {list(product_b)}')
+#else:
+ #   st.write(f'No Product B(s) found for {product}.')
     
  
 
@@ -91,7 +91,7 @@ df = get_data_from_snowflake(query)
 st.write(df)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
-st.write(product_b_str)
+#st.write(product_b_str)
 st.write("You may also like to look at before you complete your purchase :")
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_b_str}"
