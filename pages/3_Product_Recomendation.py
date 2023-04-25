@@ -75,9 +75,8 @@ df = get_data_from_snowflake(query)
 st.write(df)
 
 # Display the filtered DataFrame
-st.write(product)
+st.write(selected_option)
 
 
 
-# display consequent(s) for selected antecedent
-st.write('Consequent(s):', antecedent_consequent_dict[product])
+
