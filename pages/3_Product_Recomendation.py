@@ -18,7 +18,6 @@ conn = snowflake.connector.connect(
 
 st.write("<h1 style='text-align: center;'>Recomendations for Customers</h1>", unsafe_allow_html=True)
 
-st.write('Recomended Products Pairs')
 
 # Define a SQL query to fetch data from a table
 query = 'select * from product_recom'
@@ -47,6 +46,7 @@ frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 
 st.write("Colaborative Recommendation")
 with st.beta_expander("Expand to see pairs of products brought together"):
+    st.write('Recomended Products Pairs')
 
     # check if there are any frequent itemsets
     if len(frequent_itemsets) > 0:
