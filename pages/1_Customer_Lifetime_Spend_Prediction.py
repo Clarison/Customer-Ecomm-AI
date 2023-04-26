@@ -173,4 +173,10 @@ with st.beta_expander("Old Work"):
     st.write(df_sample_set.head(100))
 
 st.write('New Beginings')
-    
+
+query = 'select * from CUSTOMER_LIFE'
+
+df = get_data_from_snowflake(query)
+
+    # Display the results in Streamlit
+st.write(df.head())
