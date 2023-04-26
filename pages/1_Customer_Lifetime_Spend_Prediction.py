@@ -183,16 +183,22 @@ df = get_data_from_snowflake(query)
 st.write(df.head())
 
 
-discount_ratee = st.sidebar.slider('Discount rate', 0, 100, 10, 5)
-dis=discount_ratee/100
+discount_rate = st.sidebar.slider('Discount rate', 0, 100, 10, 5)
+discount_rate=discount_rate/100
 
 profit_margin = st.sidebar.slider('Profit margin', 0, 100, 10, 5)
 profit_margin=profit_margin/100
+
+churn_rate = st.sidebar.slider('Churn Rate', 0, 100, 10, 5)
+churn_rate= churn_rate/100
+
+years=st.sidebar.slider('Years', 0, 25, 10, 1)
+
 # Define the constants
-churn_rate = Decimal('0.2')
+churn_rate = Decimal(churn_rate)
 profit_margin = Decimal(profit_margin)
-discount_rate = Decimal(dis)
-years = Decimal('5')
+discount_rate = Decimal(discount_rate)
+years = Decimal(years)
 
 # Define a function to calculate the individual CLV
 def calculate_clv(total_spend, num_purchases):
