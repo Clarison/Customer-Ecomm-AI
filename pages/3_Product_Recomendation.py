@@ -103,7 +103,7 @@ st.write(df)
 
 st.title("Context Based Search")
 
-query = 'select i_item_sk,i_class,i_category,i_color from item limit 10'
+query = 'select i_item_sk,i_class,i_category,i_color from item limit 100'
 
 # Execute the query
 product_data_df = get_data_from_snowflake(query)
