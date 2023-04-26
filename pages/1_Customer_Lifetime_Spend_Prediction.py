@@ -184,10 +184,11 @@ st.write(df.head())
 
 
 discount_ratee = st.sidebar.slider('Discount rate', 0, 100, 10, 5)
+dis=discount_ratee/100
 # Define the constants
 churn_rate = Decimal('0.2')
 profit_margin = Decimal('0.2')
-discount_rate = Decimal('0.1')
+discount_rate = Decimal(dis)
 years = Decimal('5')
 
 # Define a function to calculate the individual CLV
