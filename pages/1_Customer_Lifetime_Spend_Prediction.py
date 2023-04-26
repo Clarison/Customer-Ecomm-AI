@@ -18,13 +18,13 @@ conn = snowflake.connector.connect(
 query = 'select * from CUSTOMER_LIFE'
 
 @st.cache_data()
-    def get_data_from_snowflake(query):
-        cur = conn.cursor()
-        cur.execute(query)
-        results = cur.fetchall()
-        df = pd.DataFrame(results, columns=[i[0] for i in cur.description])
-        return df
-    
+def get_data_from_snowflake(query):
+    cur = conn.cursor()
+    cur.execute(query)
+    results = cur.fetchall()
+    df = pd.DataFrame(results, columns=[i[0] for i in cur.description])
+    return df
+
 st.write("<h1 style='text-align: center;'>Customers LifeTime Value</h1>", unsafe_allow_html=True)
 
 
