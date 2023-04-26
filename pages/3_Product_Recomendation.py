@@ -107,6 +107,7 @@ query = 'select i_item_sk,i_class,i_category,i_color from item limit 10'
 # Execute the query
 product_data_df = get_data_from_snowflake(query)
 
+openai.api_key = st.secrets["api_key"]
 
 product_data_df['combined'] = product_data_df.apply(lambda row: f"{row['I_CLASS']}, {row['I_CATEGORY']}, {row['I_COLOR']}", axis=1)
 #product_data_df['text_embedding'] = product_data_df.combined.apply(lambda x: get_embedding(x, engine='text-embedding-ada-002'))
