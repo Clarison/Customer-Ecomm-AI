@@ -73,7 +73,7 @@ avg_upper_bound=round(df['IB_UPPER_BOUND'].mean())
 avg_purchase_estimate=round(df['CD_PURCHASE_ESTIMATE'].mean())
 
 
-st.header("Desciption")
+st.write("Desciption")
 
 st.markdown(f"<h3>Most of our customers for this Product are <b>{most_common_marital} {most_common_gender}</b> having <b>{most_common_education}</b> education.<br><br>Their average Purchasing Power is <b>{avg_purchase_estimate}</b> and Income somewhere between <b>{avg_lower_bound}</b> and <b>{avg_upper_bound}</b> having <b>{most_common_credit}</b> credit score.</h3>", unsafe_allow_html=True)
 
