@@ -198,3 +198,6 @@ left_column.plotly_chart(fig_age, use_container_width=True)
 mid_column.plotly_chart(fig_spending, use_container_width=True)
 right_column.plotly_chart(fig_income, use_container_width=True)
 
+
+with st.beta_expander("Click to expand sub section"):
+    st.write("Content of sub section goes here")
