@@ -104,7 +104,7 @@ with right_column:
 st.markdown("""---""")
 
 
-# Customers BY Job Industry Category [BAR CHART]
+# Customers BY Education
 sales_by_education = (
     df.groupby(by=["CD_EDUCATION_STATUS"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
 )
@@ -121,22 +121,22 @@ fig_sales_by_education = px.bar(
 
 
 
-# Customers BY total purchases by wealth segments [BAR CHART]
-sales_by_segments = (
+# Customers BY Credit Ratting
+sales_by_credit_rating = (
     df.groupby(by=["CD_CREDIT_RATING"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
 )
-fig_product_segments = px.bar(
-    sales_by_segments,
+fig_sales_by_credit_rating = px.bar(
+    sales_by_credit_rating,
     x="SS_ITEM_SK",
-    y=sales_by_segments.index,
+    y=sales_by_credit_rating.index,
     orientation="h",
     title="<b>Number of purchases by Wealth Segments</b>",
-    color_discrete_sequence=["#0083B8"] * len(sales_by_segments),
+    color_discrete_sequence=["#0083B8"] * len(sales_by_credit_rating),
     template="plotly_white",
 )
 
 
-# Customers by owns car [BAR CHART]
+# Customers by sex
 
 sex_ratio = (
     df.groupby(by=["CD_GENDER"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
@@ -155,7 +155,7 @@ fig_sex_ratio = px.bar(
 
 left_column, mid_column, right_column = st.columns(3)
 left_column.plotly_chart(fig_sales_by_education, use_container_width=True)
-mid_column.plotly_chart(fig_product_segments, use_container_width=True)
+mid_column.plotly_chart(fig_sales_by_credit_rating, use_container_width=True)
 right_column.plotly_chart(fig_sex_ratio, use_container_width=True)
 
 
