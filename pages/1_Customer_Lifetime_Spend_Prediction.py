@@ -201,8 +201,8 @@ def calculate_clv(total_spend, num_purchases):
 # Calculate the individual CLV for each customer
 results = []
 for index, row in df.iterrows():
-    total_spend = row['TOTAL']
-    num_purchases = row['QUANTITY']
+    total_spend = Decimal(row['TOTAL'])
+    num_purchases = Decimal(row['QUANTITY'])
     individual_clv = calculate_clv(total_spend, num_purchases)
     results.append({'customer_id': row['ID'], 'individual_clv': individual_clv})
 
