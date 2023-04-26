@@ -130,7 +130,7 @@ fig_sales_by_credit_rating = px.bar(
     x="SS_ITEM_SK",
     y=sales_by_credit_rating.index,
     orientation="h",
-    title="<b>Number of purchases by Wealth Segments</b>",
+    title="<b>Number of customers by Credit Scores</b>",
     color_discrete_sequence=["#0083B8"] * len(sales_by_credit_rating),
     template="plotly_white",
 )
