@@ -126,7 +126,7 @@ fig_tenure = px.histogram(df,
 )
 
 
-ib_upper_bound
+
 #histogram by Income
 
 fig_purchases = px.histogram(df,
