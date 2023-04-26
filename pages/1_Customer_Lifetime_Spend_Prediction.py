@@ -88,12 +88,21 @@ joined_df = pd.merge(df, results_df,left_on="ID", right_on="customer_id")
 # Print the joined dataframe
 st.write(joined_df.head())
 
+# Assume df is your original dataframe with many columns
+columns_to_keep = ['TOTAL', 'individual_clv']
+df = joined_df[columns_to_keep]
+
+
+sum_df = pd.DataFrame({'total_current_purchases': [df['TOTAL'].sum()],
+                       'total_predicted_spend': [df['individual_clv'].sum()]})
+st.write(sum_df)
+
 # Create a sample DataFrame
 df = pd.DataFrame({
     'category': ['Total', 'Predicted'],
     'value': [10000, 8000]
 })
-
+st.write(df)
 # Create the stacked bar chart
 chart = alt.Chart(df).mark_bar().encode(
     x='category:N',
@@ -115,16 +124,4 @@ chart = chart.properties(
 st.altair_chart(chart)
 
 
-# Assume df is your original dataframe with many columns
-columns_to_keep = ['TOTAL', 'individual_clv']
-df = joined_df[columns_to_keep]
 
-
-
-# create the chart
-chart = alt.Chart(df).mark_bar().encode(
-    x=alt.X("sum(individual_clv):Q", title="Total"),
-    y=alt.Y(value="", title=None)
-)
-# Show the chart in Streamlit
-st.altair_chart(chart)
