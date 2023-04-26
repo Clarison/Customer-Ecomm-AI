@@ -173,14 +173,12 @@ with st.beta_expander("Old Work"):
 
     st.write(df_sample_set.head(100))
 
-st.write('New Beginings')
+st.write("<h1 style='text-align: center;'>Customers LifeTime Value</h1>", unsafe_allow_html=True)
 
 query = 'select * from CUSTOMER_LIFE'
 
 df = get_data_from_snowflake(query)
 
-    # Display the results in Streamlit
-st.write(df.head())
 
 
 discount_rate = st.sidebar.slider('Discount rate', 0, 100, 10, 5)
