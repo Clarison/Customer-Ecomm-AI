@@ -182,6 +182,8 @@ df = get_data_from_snowflake(query)
     # Display the results in Streamlit
 st.write(df.head())
 
+
+discount_ratee = st.sidebar.slider('Discount rate', 0.0, 1.0, 0.1, 0.05)
 # Define the constants
 churn_rate = Decimal('0.2')
 profit_margin = Decimal('0.2')
