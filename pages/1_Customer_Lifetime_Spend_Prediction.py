@@ -104,8 +104,8 @@ chart = alt.Chart(df).mark_bar().encode(
 # Add axis labels and a title
 chart = chart.properties(
     title='Total vs. Predicted Sum',
-    width=400,
-    height=300
+    width=800,
+    height=600
 ).configure_axis(
     labelFontSize=14,
     titleFontSize=16
