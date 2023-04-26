@@ -183,7 +183,7 @@ df = get_data_from_snowflake(query)
 st.write(df.head())
 
 
-discount_ratee = st.sidebar.slider('Discount rate', 0.0, 1.0, 0.1, 0.05)
+discount_ratee = st.sidebar.slider('Discount rate', 0, 100, 10, 5)
 # Define the constants
 churn_rate = Decimal('0.2')
 profit_margin = Decimal('0.2')
