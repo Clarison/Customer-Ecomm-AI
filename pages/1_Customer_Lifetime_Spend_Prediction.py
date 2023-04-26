@@ -184,9 +184,9 @@ st.write(df.head())
 
 
 # Define the constants
-churn_rate = 0.2
-profit_margin = 0.2
-discount_rate = 0.1
+churn_rate = 2
+profit_margin = 2
+discount_rate = 2
 years = 5
 
 # Define a function to calculate the individual CLV
