@@ -85,7 +85,7 @@ st.markdown("##")
 
 # TOP KPI's
 total_customers = int(df["SS_ITEM_SK"].count())
-average_age = round(df_selection["AGE"].mean(), 1)
+average_age = round(df["AGE"].mean(), 1)
 #average_sale_by_customer = round(df_selection["past_3_years_bike_related_purchases"].mean(), 2)
 
 st.subheader("Total Customers:")
