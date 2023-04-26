@@ -86,10 +86,19 @@ st.markdown("##")
 # TOP KPI's
 total_customers = int(df["SS_ITEM_SK"].count())
 average_age = round(df["AGE"].mean(), 1)
-#average_sale_by_customer = round(df_selection["past_3_years_bike_related_purchases"].mean(), 2)
+average_purchase_estimate = round(df["CD_PURCHASE_ESTIMATE"].mean(), 2)
 
-st.subheader("Total Customers:")
-st.subheader(f"{total_customers:,}")
-st.subheader("Average Age:")
-st.subheader(f"{average_age}")
+
+left_column, middle_column, right_column = st.columns(3)
+with left_column:
+    st.subheader("Total Customers:")
+    st.subheader(f"{total_customers:,}")
+with middle_column:
+    st.subheader("Average Age:")
+    st.subheader(f"{average_age}")
+with right_column:
+    st.subheader("Average Purchases Estimate:")
+    st.subheader(f"{average_purchase_estimate}")
+
+st.markdown("""---""")
 
