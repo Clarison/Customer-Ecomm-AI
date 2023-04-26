@@ -114,7 +114,7 @@ product_data_df['combined'] = product_data_df.apply(lambda row: f"{row['I_CLASS'
 product_data_df['text_embedding'] = product_data_df.combined.apply(lambda x: get_embedding(x, engine='text-embedding-ada-002'))
 
 
-customer_input = st.text_input("Hi! Can you recommend a good women shoes for me?" )
+customer_input = st.text_input("Hi! How can I help you Today ?" )
 
 response = openai.Embedding.create(
     input=customer_input,
