@@ -89,8 +89,10 @@ query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM It
 
 # Execute the query
 df = get_data_from_snowflake(query)
-# Display the result
-st.write(df)
+
+with st.beta_expander("Expand to see most pairs brought together"):
+    # Display the result
+    st.write(df)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
