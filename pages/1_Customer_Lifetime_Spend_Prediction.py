@@ -79,8 +79,7 @@ for index, row in df.iterrows():
 # Create a DataFrame to store the results
 results_df = pd.DataFrame(results)
 
-# Print the DataFrame
-st.write(results_df.head())
+
 
 # Join the dataframes on the "customer_id" column
 joined_df = pd.merge(df, results_df,left_on="ID", right_on="customer_id")
@@ -99,14 +98,9 @@ sum_df = pd.DataFrame({'total_current_purchases': [df['TOTAL'].sum()],
 melted_df = pd.melt(sum_df, var_name='category', value_name='value')
 
 
-st.write(melted_df)
 
-# Create a sample DataFrame
-df = pd.DataFrame({
-    'category': ['Total', 'Predicted'],
-    'value': [10000, 8000]
-})
-st.write(df)
+
+
 # Create the stacked bar chart
 chart = alt.Chart(melted_df).mark_bar().encode(
     x='category:N',
