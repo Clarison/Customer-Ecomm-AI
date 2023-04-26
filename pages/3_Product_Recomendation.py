@@ -83,7 +83,7 @@ df = get_data_from_snowflake(query)
 
 # Display the result
 st.write(df)
-clas =df['I_CLASS']
+clas =str(df['I_CLASS'])
 st.write(clas)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
