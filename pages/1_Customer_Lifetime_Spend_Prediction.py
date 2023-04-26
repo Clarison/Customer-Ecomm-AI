@@ -115,10 +115,15 @@ chart = chart.properties(
 st.altair_chart(chart)
 
 
+# Assume df is your original dataframe with many columns
+columns_to_keep = ['TOTAL', 'individual_clv']
+df = joined_df[columns_to_keep]
+
+
 # create the chart
-chart = alt.Chart(joined_df).mark_bar().encode(
-    x=alt.X("sum(TOTAL):Q", title="Total"),
-    y=alt.Y("TOTAL":N, title=None)
+chart = alt.Chart(df).mark_bar().encode(
+    x=alt.X("sum(individual_clv):Q", title="Total"),
+    y=alt.Y("":N, title=None)
 )
 
 # Show the chart in Streamlit
