@@ -126,4 +126,5 @@ product_data_df['search_products'] = product_data_df.text_embedding.apply(lambda
 product_data_df = product_data_df.sort_values('search_products', ascending=False)
 
 top_3_products_df=product_data_df.head(5)
+st.write("Here are some Products you might be Intrested in:")
 st.write(top_3_products_df)
