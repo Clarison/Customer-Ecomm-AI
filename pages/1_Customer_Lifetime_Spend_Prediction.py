@@ -182,12 +182,11 @@ df = get_data_from_snowflake(query)
     # Display the results in Streamlit
 st.write(df.head())
 
-
 # Define the constants
-churn_rate = 2
-profit_margin = 2
-discount_rate = 2
-years = 5
+churn_rate = Decimal('0.2')
+profit_margin = Decimal('0.2')
+discount_rate = Decimal('0.1')
+years = Decimal('5')
 
 # Define a function to calculate the individual CLV
 def calculate_clv(total_spend, num_purchases):
