@@ -100,4 +100,5 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
+st.title("Context Based Search")
 
