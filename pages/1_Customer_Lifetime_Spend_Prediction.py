@@ -185,9 +185,12 @@ st.write(df.head())
 
 discount_ratee = st.sidebar.slider('Discount rate', 0, 100, 10, 5)
 dis=discount_ratee/100
+
+profit_margin = st.sidebar.slider('Profit margin', 0, 100, 10, 5)
+profit_margin=profit_margin/100
 # Define the constants
 churn_rate = Decimal('0.2')
-profit_margin = Decimal('0.2')
+profit_margin = Decimal(profit_margin)
 discount_rate = Decimal(dis)
 years = Decimal('5')
 
