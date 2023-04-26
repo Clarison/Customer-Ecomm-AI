@@ -30,7 +30,7 @@ df = get_data_from_snowflake(query)
 
 column_data = df["SS_ITEM_SK"]
 
-st.header("Targeted Customers",style={'text-align': 'center'})
+st.title("Targeted Customers", style={'text-align': 'center'})
 
 st.write("Select the Product to view its targeted audience:")
 
