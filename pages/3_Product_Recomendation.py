@@ -16,6 +16,8 @@ conn = snowflake.connector.connect(
     schema= st.secrets["schema"]
 )
 
+st.write("<h1 style='text-align: center;'>Recomendations for Customers</h1>", unsafe_allow_html=True)
+
 st.write('Recomended Products Pairs')
 
 # Define a SQL query to fetch data from a table
