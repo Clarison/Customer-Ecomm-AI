@@ -104,6 +104,61 @@ with right_column:
 st.markdown("""---""")
 
 
+# Customers BY Job Industry Category [BAR CHART]
+sales_by_education = (
+    df_selection.groupby(by=["CD_CREDIT_RATING"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+)
+fig_sales_by_education = px.bar(
+    sales_by_education,
+    x="SS_ITEM_SK",
+    y=sales_by_education.index,
+    orientation="h",
+    title="<b>Customers by Education</b>",
+    color_discrete_sequence=["#0083B8"] * len(sales_by_education),
+    template="plotly_white",
+)
+
+
+
+
+# Customers BY total purchases by wealth segments [BAR CHART]
+sales_by_segments = (
+    df_selection.groupby(by=["wealth_segment"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+)
+fig_product_segments = px.bar(
+    sales_by_segments,
+    x="past_3_years_bike_related_purchases",
+    y=sales_by_segments.index,
+    orientation="h",
+    title="<b>Number of purchases by Wealth Segments</b>",
+    color_discrete_sequence=["#0083B8"] * len(sales_by_segments),
+    template="plotly_white",
+)
+
+
+# Customers by owns car [BAR CHART]
+
+sex_ratio = (
+    df.groupby(by=["CD_GENDER"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+)
+fig_sex_ratio = px.bar(
+    sex_ratio,
+    x="SS_ITEM_SK",
+    y=sex_ratio.index,
+    orientation="h",
+    title="<b>Number as per gender </b>",
+    color_discrete_sequence=["#0083B8"] * len(sex_ratio),
+    template="plotly_white"
+)
+
+
+
+left_column, mid_column, right_column = st.columns(3)
+left_column.plotly_chart(fig_sales_by_education, use_container_width=True)
+mid_column.plotly_chart(fig_product_segments, use_container_width=True)
+right_column.plotly_chart(fig_sex_ratio, use_container_width=True)
+
+
 
 #histogram by age
 
