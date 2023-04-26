@@ -29,7 +29,7 @@ st.write("<h1 style='text-align: center;'>Customers LifeTime Value</h1>", unsafe
 
 
 # Set page title and description
-st.set_page_config(page_title="Customer Lifetime Value Calculation", page_icon=":dollar:", layout="wide")
+
 st.title("Customer Lifetime Value Calculation")
 st.write("In this section, we are using customer transaction data to calculate individual customer lifetime value (CLV). By estimating the total revenue a business can expect from a single customer over their lifetime, we can determine the value of each customer and make informed decisions about marketing, sales, and customer service strategies to increase profitability.")
 
