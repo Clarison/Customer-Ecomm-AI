@@ -2,7 +2,7 @@ import streamlit as st
 import snowflake.connector
 import pandas as pd
 import altair as alt
-
+from openai.embeddings_utils import get_embedding, cosine_similarity
 from mlxtend.frequent_patterns import apriori, association_rules
 
 # Connect to Snowflake
