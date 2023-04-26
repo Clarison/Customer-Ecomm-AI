@@ -124,6 +124,6 @@ embeddings_customer_question = response['data'][0]['embedding']
 product_data_df['search_products'] = product_data_df.text_embedding.apply(lambda x: cosine_similarity(x, embeddings_customer_question))
 product_data_df = product_data_df.sort_values('search_products', ascending=False)
 
-top_3_products_df=product_data_df.head(5)
+top_3_products_df=product_data_df.head(3)
 st.write("Here are some Products you might be Intrested in:")
 st.write(top_3_products_df)
