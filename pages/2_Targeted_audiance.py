@@ -29,20 +29,20 @@ def get_data_from_snowflake(query):
 df = get_data_from_snowflake(query)
 
 column_data = df["SS_ITEM_SK"]
-    
+
+st.header("Targeted Customers")
+
 st.write("Select the Product to view its targeted audience:")
 
-selected_value = st.selectbox("Select a Product ID", column_data)
-# Display the results in Streamlit
-#st.write(selected_value)
-
-
+selected_value = st.selectbox("Product ID", column_data)
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{selected_value}'"
 
 # Execute the query
 df = get_data_from_snowflake(query)
 # Display the result
+st.write("Details:")
+
 st.write(df)
 
 
@@ -62,9 +62,6 @@ df['CD_MARITAL_STATUS'] = df['CD_MARITAL_STATUS'].replace({
     'W': 'Widowed',
     'U': 'Unknown'
 })
-# Display the result
-#st.write(df.head())
-
 
 # find the most common value in the 'col1' column
 most_common_education = df['CD_EDUCATION_STATUS'].mode()[0]
@@ -76,7 +73,7 @@ avg_upper_bound=round(df['IB_UPPER_BOUND'].mean())
 avg_purchase_estimate=round(df['CD_PURCHASE_ESTIMATE'].mean())
 
 
-
+st.header("Desciption")
 
 st.markdown(f"<h3>Most of our customers for this Product are <b>{most_common_marital} {most_common_gender}</b> having <b>{most_common_education}</b> education.<br><br>Their average Purchasing Power is <b>{avg_purchase_estimate}</b> and Income somewhere between <b>{avg_lower_bound}</b> and <b>{avg_upper_bound}</b> having <b>{most_common_credit}</b> credit score.</h3>", unsafe_allow_html=True)
 
