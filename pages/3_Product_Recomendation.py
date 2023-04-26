@@ -116,3 +116,15 @@ product_data_df['text_embedding'] = product_data_df.combined.apply(lambda x: get
 # Display the result
 st.write(product_data_df)
 
+customer_input = "Hi! Can you recommend a good women shoes for me?"
+response = openai.Embedding.create(
+    input=customer_input,
+    model="text-embedding-ada-002"
+)
+embeddings_customer_question = response['data'][0]['embedding']
+
+product_data_df['search_products'] = product_data_df.text_embedding.apply(lambda x: cosine_similarity(x, embeddings_customer_question))
+product_data_df = product_data_df.sort_values('search_products', ascending=False)
+
+top_3_products_df=product_data_df.head(5)
+st.write(top_3_products_df)
