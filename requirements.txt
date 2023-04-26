@@ -4,3 +4,4 @@ pandas
 altair
 mlxtend
 openai
+plotly
