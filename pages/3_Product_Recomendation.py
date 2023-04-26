@@ -95,6 +95,9 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
+clas =df['I_CLASS']
+st.write(clas)
+
 st.write("Context Based Recomendations")
 openai.api_key = st.secrets["api_key"]
 
