@@ -46,7 +46,7 @@ st.write(df)
 
 
     
-query = f"select * from  customer_pattern where ss_item_sk= '{selected_value}' limit 1000"
+query = f"select * from  customer_pattern where ss_item_sk= '{selected_value}' limit 10000"
 
 # Execute the query
 df = get_data_from_snowflake(query)
