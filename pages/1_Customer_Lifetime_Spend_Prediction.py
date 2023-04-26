@@ -80,4 +80,10 @@ for index, row in df.iterrows():
 results_df = pd.DataFrame(results)
 
 # Print the DataFrame
-st.write(results_df)
+st.write(results_df.head())
+
+# Join the dataframes on the "customer_id" column
+joined_df = pd.merge(df, results_df,left_on="ID", right_on="customer_id")
+
+# Print the joined dataframe
+print(joined_df.head())
