@@ -195,7 +195,7 @@ def calculate_clv(total_spend, num_purchases):
     cl = 1 / churn_rate
     cv = asp * pf
     individual_clv = cv * cl * profit_margin * (1 - discount_rate) * years
-    return individual_clv
+    return round(individual_clv,2)
 
 # Calculate the individual CLV for each customer
 results = []
