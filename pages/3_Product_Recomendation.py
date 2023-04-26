@@ -66,11 +66,9 @@ with st.beta_expander("Expand to see pairs of products brought together"):
     else:
         st.write("No frequent itemsets found with the given minimum support value.")
 
-st.write("Select a product you would like to buy :")
-
 
 # Create the dropdown select
-product = st.selectbox('Select a product', rules['Product A'])
+product = st.selectbox('Select a product you would like to buy :', rules['Product A'])
 product_a_str ='(' + ','.join(map(str, product)) + ')'
 
 # find the corresponding value(s) of Product B in antecedent_consequent_dict
