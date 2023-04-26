@@ -78,5 +78,7 @@ avg_purchase_estimate=round(df['CD_PURCHASE_ESTIMATE'].mean())
 
 st.write(f"Most of our customers for this Product are {most_common_marital} {most_common_gender} having {most_common_education} eduction.Their avgerae Purchacing power is {avg_purchase_estimate} and Income somewhere between  {avg_lower_bound} and {avg_upper_bound}  having  {most_common_credit} credit score")
 
+st.title(":bar_chart: Target Customer Dashboard")
+st.markdown("##")
 
 
