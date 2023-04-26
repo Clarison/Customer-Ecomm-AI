@@ -106,7 +106,7 @@ st.markdown("""---""")
 
 # Customers BY Job Industry Category [BAR CHART]
 sales_by_education = (
-    df_selection.groupby(by=["CD_CREDIT_RATING"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+    df.groupby(by=["CD_EDUCATION_STATUS"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
 )
 fig_sales_by_education = px.bar(
     sales_by_education,
@@ -123,11 +123,11 @@ fig_sales_by_education = px.bar(
 
 # Customers BY total purchases by wealth segments [BAR CHART]
 sales_by_segments = (
-    df_selection.groupby(by=["wealth_segment"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+    df.groupby(by=["CD_CREDIT_RATING"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
 )
 fig_product_segments = px.bar(
     sales_by_segments,
-    x="past_3_years_bike_related_purchases",
+    x="SS_ITEM_SK",
     y=sales_by_segments.index,
     orientation="h",
     title="<b>Number of purchases by Wealth Segments</b>",
