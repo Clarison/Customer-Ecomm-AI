@@ -80,123 +80,123 @@ avg_purchase_estimate=round(df['CD_PURCHASE_ESTIMATE'].mean())
 
 st.markdown(f"<h3>Most of our customers for this Product are <b>{most_common_marital} {most_common_gender}</b> having <b>{most_common_education}</b> education.<br><br>Their average Purchasing Power is <b>{avg_purchase_estimate}</b> and Income somewhere between <b>{avg_lower_bound}</b> and <b>{avg_upper_bound}</b> having <b>{most_common_credit}</b> credit score.</h3>", unsafe_allow_html=True)
 
+with st.beta_expander("Click to expand sub section"):
+	st.title(":bar_chart: Target Customer Dashboard")
+	st.markdown("##")
 
-st.title(":bar_chart: Target Customer Dashboard")
-st.markdown("##")
-
-# TOP KPI's
-total_customers = int(df["SS_ITEM_SK"].count())
-average_age = round(df["AGE"].mean(), 1)
-average_purchase_estimate = round(df["CD_PURCHASE_ESTIMATE"].mean(), 2)
-
-
-left_column, middle_column, right_column = st.columns(3)
-with left_column:
-    st.subheader("Total Customers:")
-    st.subheader(f"{total_customers:,}")
-with middle_column:
-    st.subheader("Average Age:")
-    st.subheader(f"{average_age}")
-with right_column:
-    st.subheader("Average Purchases Estimate:")
-    st.subheader(f"{average_purchase_estimate}")
-
-st.markdown("""---""")
+	# TOP KPI's
+	total_customers = int(df["SS_ITEM_SK"].count())
+	average_age = round(df["AGE"].mean(), 1)
+	average_purchase_estimate = round(df["CD_PURCHASE_ESTIMATE"].mean(), 2)
 
 
-# Customers BY Education
-sales_by_education = (
-    df.groupby(by=["CD_EDUCATION_STATUS"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
-)
-fig_sales_by_education = px.bar(
-    sales_by_education,
-    x="SS_ITEM_SK",
-    y=sales_by_education.index,
-    orientation="h",
-    title="<b>Customers by Education</b>",
-    color_discrete_sequence=["#0083B8"] * len(sales_by_education),
-    template="plotly_white",
-)
+	left_column, middle_column, right_column = st.columns(3)
+	with left_column:
+	    st.subheader("Total Customers:")
+	    st.subheader(f"{total_customers:,}")
+	with middle_column:
+	    st.subheader("Average Age:")
+	    st.subheader(f"{average_age}")
+	with right_column:
+	    st.subheader("Average Purchases Estimate:")
+	    st.subheader(f"{average_purchase_estimate}")
+
+	st.markdown("""---""")
 
 
-
-
-# Customers BY Credit Ratting
-sales_by_credit_rating = (
-    df.groupby(by=["CD_CREDIT_RATING"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
-)
-fig_sales_by_credit_rating = px.bar(
-    sales_by_credit_rating,
-    x="SS_ITEM_SK",
-    y=sales_by_credit_rating.index,
-    orientation="h",
-    title="<b>Number of customers by Credit Scores</b>",
-    color_discrete_sequence=["#0083B8"] * len(sales_by_credit_rating),
-    template="plotly_white",
-)
-
-
-# Customers by sex
-
-sex_ratio = (
-    df.groupby(by=["CD_GENDER"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
-)
-fig_sex_ratio = px.bar(
-    sex_ratio,
-    x="SS_ITEM_SK",
-    y=sex_ratio.index,
-    orientation="h",
-    title="<b>Number as per gender </b>",
-    color_discrete_sequence=["#0083B8"] * len(sex_ratio),
-    template="plotly_white"
-)
+	# Customers BY Education
+	sales_by_education = (
+	    df.groupby(by=["CD_EDUCATION_STATUS"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+	)
+	fig_sales_by_education = px.bar(
+	    sales_by_education,
+	    x="SS_ITEM_SK",
+	    y=sales_by_education.index,
+	    orientation="h",
+	    title="<b>Customers by Education</b>",
+	    color_discrete_sequence=["#0083B8"] * len(sales_by_education),
+	    template="plotly_white",
+	)
 
 
 
-left_column, mid_column, right_column = st.columns(3)
-left_column.plotly_chart(fig_sales_by_education, use_container_width=True)
-mid_column.plotly_chart(fig_sales_by_credit_rating, use_container_width=True)
-right_column.plotly_chart(fig_sex_ratio, use_container_width=True)
+
+	# Customers BY Credit Ratting
+	sales_by_credit_rating = (
+	    df.groupby(by=["CD_CREDIT_RATING"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+	)
+	fig_sales_by_credit_rating = px.bar(
+	    sales_by_credit_rating,
+	    x="SS_ITEM_SK",
+	    y=sales_by_credit_rating.index,
+	    orientation="h",
+	    title="<b>Number of customers by Credit Scores</b>",
+	    color_discrete_sequence=["#0083B8"] * len(sales_by_credit_rating),
+	    template="plotly_white",
+	)
+
+
+	# Customers by sex
+
+	sex_ratio = (
+	    df.groupby(by=["CD_GENDER"]).count()[["SS_ITEM_SK"]].sort_values(by="SS_ITEM_SK")
+	)
+	fig_sex_ratio = px.bar(
+	    sex_ratio,
+	    x="SS_ITEM_SK",
+	    y=sex_ratio.index,
+	    orientation="h",
+	    title="<b>Number as per gender </b>",
+	    color_discrete_sequence=["#0083B8"] * len(sex_ratio),
+	    template="plotly_white"
+	)
 
 
 
-#histogram by age
-
-fig_age = px.histogram(df,
-	x="AGE",
-	title="<b>Distribution by age</b>",
-	color_discrete_sequence=["#0083B8"] ,
-	template="plotly_white"
-)
+	left_column, mid_column, right_column = st.columns(3)
+	left_column.plotly_chart(fig_sales_by_education, use_container_width=True)
+	mid_column.plotly_chart(fig_sales_by_credit_rating, use_container_width=True)
+	right_column.plotly_chart(fig_sex_ratio, use_container_width=True)
 
 
 
-#histogram by Purchase
+	#histogram by age
 
-fig_spending = px.histogram(df,
-	x="CD_PURCHASE_ESTIMATE",
-	title="<b>Distribution by Estmate Spendings</b>",
-	color_discrete_sequence=["#0083B8"] ,
-	template="plotly_white"
-)
-
-
-
-#histogram by Income
-
-fig_income = px.histogram(df,
-	x="IB_UPPER_BOUND",
-	title="<b>Distribution by Income/b>",
-	color_discrete_sequence=["#0083B8"] ,
-	template="plotly_white"
-)
+	fig_age = px.histogram(df,
+		x="AGE",
+		title="<b>Distribution by age</b>",
+		color_discrete_sequence=["#0083B8"] ,
+		template="plotly_white"
+	)
 
 
 
-left_column, mid_column, right_column = st.columns(3)
-left_column.plotly_chart(fig_age, use_container_width=True)
-mid_column.plotly_chart(fig_spending, use_container_width=True)
-right_column.plotly_chart(fig_income, use_container_width=True)
+	#histogram by Purchase
+
+	fig_spending = px.histogram(df,
+		x="CD_PURCHASE_ESTIMATE",
+		title="<b>Distribution by Estmate Spendings</b>",
+		color_discrete_sequence=["#0083B8"] ,
+		template="plotly_white"
+	)
+
+
+
+	#histogram by Income
+
+	fig_income = px.histogram(df,
+		x="IB_UPPER_BOUND",
+		title="<b>Distribution by Income/b>",
+		color_discrete_sequence=["#0083B8"] ,
+		template="plotly_white"
+	)
+
+
+
+	left_column, mid_column, right_column = st.columns(3)
+	left_column.plotly_chart(fig_age, use_container_width=True)
+	mid_column.plotly_chart(fig_spending, use_container_width=True)
+	right_column.plotly_chart(fig_income, use_container_width=True)
 
 
 with st.beta_expander("Click to expand sub section"):
