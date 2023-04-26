@@ -180,3 +180,33 @@ df = get_data_from_snowflake(query)
 
     # Display the results in Streamlit
 st.write(df.head())
+
+
+# Define the constants
+churn_rate = 0.2
+profit_margin = 0.2
+discount_rate = 0.1
+years = 5
+
+# Define a function to calculate the individual CLV
+def calculate_clv(total_spend, num_purchases):
+    asp = total_spend / num_purchases
+    pf = num_purchases / 1  # assuming only one customer
+    cl = 1 / churn_rate
+    cv = asp * pf
+    individual_clv = cv * cl * profit_margin * (1 - discount_rate) * years
+    return individual_clv
+
+# Calculate the individual CLV for each customer
+results = []
+for index, row in df.iterrows():
+    total_spend = row['TOTAL']
+    num_purchases = row['QUANTITY']
+    individual_clv = calculate_clv(total_spend, num_purchases)
+    results.append({'customer_id': row['ID'], 'individual_clv': individual_clv})
+
+# Create a DataFrame to store the results
+results_df = pd.DataFrame(results)
+
+# Print the DataFrame
+st.write(results_df)
