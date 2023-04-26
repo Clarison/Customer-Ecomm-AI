@@ -86,4 +86,4 @@ st.write(results_df.head())
 joined_df = pd.merge(df, results_df,left_on="ID", right_on="customer_id")
 
 # Print the joined dataframe
-print(joined_df.head())
+st.write(joined_df.head())
