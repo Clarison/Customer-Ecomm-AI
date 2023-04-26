@@ -98,7 +98,7 @@ st.write(df)
 st.title("Context Based Search")
 openai.api_key = st.secrets["api_key"]
 
-query = 'select i_item_sk,i_class,i_category,i_color from item limit 20'
+query = 'select i_item_sk,i_class,i_category,i_color from item limit 10'
 
 # Execute the query
 @st.cache(allow_output_mutation=True)
