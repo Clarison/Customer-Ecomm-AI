@@ -91,7 +91,7 @@ st.write(joined_df.head())
 # Assume df is your original dataframe with many columns
 columns_to_keep = ['TOTAL', 'individual_clv']
 df = joined_df[columns_to_keep]
-
+df = df.astype(int)
 
 sum_df = pd.DataFrame({'total_current_purchases': [df['TOTAL'].sum()],
                        'total_predicted_spend': [df['individual_clv'].sum()]})
