@@ -2,6 +2,7 @@ import streamlit as st
 import snowflake.connector
 import pandas as pd
 import altair as alt
+from decimal import Decimal
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
