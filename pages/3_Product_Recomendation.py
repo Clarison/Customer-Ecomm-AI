@@ -95,7 +95,7 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
-st.title("Context Based Search")
+st.write("Context Based Recomendations")
 openai.api_key = st.secrets["api_key"]
 
 query = 'select i_item_sk,i_class,i_category,i_color from item limit 20'
