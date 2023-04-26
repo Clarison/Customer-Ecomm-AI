@@ -118,7 +118,7 @@ st.altair_chart(chart)
 # create the chart
 chart = alt.Chart(joined_df).mark_bar().encode(
     x=alt.X("sum(TOTAL):Q", title="Total"),
-    y=alt.Y("":N, title=None)
+    y=alt.Y("TOTAL":N, title=None)
 )
 
 # Show the chart in Streamlit
