@@ -83,6 +83,8 @@ df = get_data_from_snowflake(query)
 
 # Display the result
 st.write(df)
+clas =df['I_CLASS']
+st.write(clas)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
@@ -95,8 +97,7 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 
-clas =df['I_CLASS']
-st.write(clas)
+
 
 st.write("Context Based Recomendations")
 openai.api_key = st.secrets["api_key"]
