@@ -118,7 +118,7 @@ fig_age = px.histogram(df,
 
 #histogram by Purchase
 
-fig_tenure = px.histogram(df,
+fig_spending = px.histogram(df,
 	x="CD_PURCHASE_ESTIMATE",
 	title="<b>Distribution by Estmate Spendings</b>",
 	color_discrete_sequence=["#0083B8"] ,
@@ -129,7 +129,7 @@ fig_tenure = px.histogram(df,
 
 #histogram by Income
 
-fig_purchases = px.histogram(df,
+fig_income = px.histogram(df,
 	x="IB_UPPER_BOUND",
 	title="<b>Distribution by Income/b>",
 	color_discrete_sequence=["#0083B8"] ,
@@ -140,6 +140,6 @@ fig_purchases = px.histogram(df,
 
 left_column, mid_column, right_column = st.columns(3)
 left_column.plotly_chart(fig_age, use_container_width=True)
-mid_column.plotly_chart(fig_tenure, use_container_width=True)
-right_column.plotly_chart(fig_purchases, use_container_width=True)
+mid_column.plotly_chart(fig_spending, use_container_width=True)
+right_column.plotly_chart(fig_income, use_container_width=True)
 
