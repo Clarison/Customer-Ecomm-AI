@@ -45,23 +45,26 @@ df_encoded = df_grouped['SS_ITEM_SK'].str.get_dummies(',')
 # apply Apriori algorithm to identify frequent itemsets
 frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 
-# check if there are any frequent itemsets
-if len(frequent_itemsets) > 0:
-    # generate association rules from frequent itemsets
-    rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
-    # create dictionary of antecedents and consequents
-    antecedent_consequent_dict = dict(zip(rules['antecedents'], rules['consequents']))
-    # convert frozen sets to regular sets
-    rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
-    # rename the columns
-    rules.rename(columns={'antecedents': 'Product A', 'consequents': 'Product B'}, inplace=True)
-    # select only the desired columns
-    rules = rules.loc[:, ['Product A', 'Product B', 'confidence']]
+st.write("Colaborative Recommendation")
+with st.beta_expander("Expand to see pairs of products brought together"):
 
-    # print the resulting association rules
-    st.write(rules.head())
-else:
-    st.write("No frequent itemsets found with the given minimum support value.")
+    # check if there are any frequent itemsets
+    if len(frequent_itemsets) > 0:
+        # generate association rules from frequent itemsets
+        rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1)
+        # create dictionary of antecedents and consequents
+        antecedent_consequent_dict = dict(zip(rules['antecedents'], rules['consequents']))
+        # convert frozen sets to regular sets
+        rules[['antecedents', 'consequents']] = rules[['antecedents', 'consequents']].applymap(set)
+        # rename the columns
+        rules.rename(columns={'antecedents': 'Product A', 'consequents': 'Product B'}, inplace=True)
+        # select only the desired columns
+        rules = rules.loc[:, ['Product A', 'Product B', 'confidence']]
+
+        # print the resulting association rules
+        st.write(rules.head())
+    else:
+        st.write("No frequent itemsets found with the given minimum support value.")
 
 st.write("Select a product you would like to buy :")
 
@@ -90,9 +93,8 @@ query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM It
 # Execute the query
 df = get_data_from_snowflake(query)
 
-with st.beta_expander("Expand to see most pairs brought together"):
-    # Display the result
-    st.write(df)
+# Display the result
+st.write(df)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
