@@ -108,7 +108,7 @@ df = pd.DataFrame({
 })
 st.write(df)
 # Create the stacked bar chart
-chart = alt.Chart(melted_df).mark_bar().encode(
+chart = alt.Chart(df).mark_bar().encode(
     x='category:N',
     y='value:Q',
     color='category:N'
