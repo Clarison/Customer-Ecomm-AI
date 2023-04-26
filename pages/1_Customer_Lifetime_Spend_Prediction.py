@@ -87,3 +87,29 @@ joined_df = pd.merge(df, results_df,left_on="ID", right_on="customer_id")
 
 # Print the joined dataframe
 st.write(joined_df.head())
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'category': ['Total', 'Predicted'],
+    'value': [10000, 8000]
+})
+
+# Create the stacked bar chart
+chart = alt.Chart(df).mark_bar().encode(
+    x='category:N',
+    y='value:Q',
+    color='category:N'
+)
+
+# Add axis labels and a title
+chart = chart.properties(
+    title='Total vs. Predicted Sum',
+    width=400,
+    height=300
+).configure_axis(
+    labelFontSize=14,
+    titleFontSize=16
+)
+
+# Show the chart in Streamlit
+st.altair_chart(chart)
