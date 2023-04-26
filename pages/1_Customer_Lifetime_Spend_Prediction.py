@@ -95,7 +95,11 @@ df = joined_df[columns_to_keep]
 
 sum_df = pd.DataFrame({'total_current_purchases': [df['TOTAL'].sum()],
                        'total_predicted_spend': [df['individual_clv'].sum()]})
-st.write(sum_df)
+# melt the data
+melted_df = pd.melt(sum_df, var_name='category', value_name='value')
+
+
+st.write(melted_df)
 
 # Create a sample DataFrame
 df = pd.DataFrame({
