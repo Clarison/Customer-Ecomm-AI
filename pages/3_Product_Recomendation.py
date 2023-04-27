@@ -154,6 +154,6 @@ completion = openai.ChatCompletion.create(
   messages=message_objects
 )
 
-st.subheader("Listen to the expert")
+st.subheader("Listen to the Expert")
 with st.beta_expander("Why should I buy it?"):
     st.write(completion.choices[0].message['content'])
