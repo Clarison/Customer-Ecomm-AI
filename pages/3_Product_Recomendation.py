@@ -145,7 +145,7 @@ with st.beta_expander("Recommended products"):
 
 message_objects = []
 message_objects.append({"role":"system", "content":"You're a chatbot helping customers with product "})
-message_objects.append({"role":"user", "content": f"Here're my latest product orders: {customer_input}"})
+message_objects.append({"role":"user", "content": f"Here're my latest product orders: {result}"})
 message_objects.append({"role":"user", "content": "Please be friendly and talk to me like a person"})
 message_objects.append({"role":"user", "content": "tell me why i should buy the product"})
 
