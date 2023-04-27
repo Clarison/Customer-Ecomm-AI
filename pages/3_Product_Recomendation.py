@@ -96,7 +96,7 @@ result = ' '.join(result)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
-st.write("You may also like to look at before you complete your purchase:")
+
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_b_str}"
 
@@ -104,8 +104,9 @@ query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM It
 df = get_data_from_snowflake(query)
 # Display the result
 st.subheader("Collaborative Recommendation")
-
-st.write(df)
+st.write("You may also like to look at before you complete your purchase:")
+with st.beta_expander("Recommended products"):
+    st.write(df)
 
 
 
@@ -137,4 +138,6 @@ product_data_df = product_data_df.sort_values('search_products', ascending=False
 
 top_3_products_df=product_data_df.head(3)
 st.write("Here are some products you might be interested in:")
-st.write(top_3_products_df)
+with st.beta_expander("Recommended products"):
+    
+    st.write(top_3_products_df)
