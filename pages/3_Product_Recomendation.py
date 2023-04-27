@@ -16,12 +16,11 @@ conn = snowflake.connector.connect(
     schema= st.secrets["schema"]
 )
 
-#st.write("<h1 style='text-align: center;'>Recomendations for Customers</h1>", unsafe_allow_html=True)
 # Set the page title and icon
 st.set_page_config(page_title="Product Recommendations", page_icon=":shopping_cart:")
 
 # Add a header with the title
-st.header("Recommendations for Customers")
+st.write("<h2 style='text-align: center;'>Recommendations for Customers</h2>", unsafe_allow_html=True)
 
 # Define a SQL query to fetch data from a table
 query = 'select * from product_recom'
