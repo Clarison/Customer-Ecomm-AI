@@ -84,7 +84,16 @@ df = get_data_from_snowflake(query)
 # Display the result
 st.write(df)
 clas =str(df['I_CLASS'])
-st.write(clas)
+
+
+# Extract the two classes
+classes = clas.split()[1:3]
+
+# Combine the two classes with a space
+combined_class = classes[0] + " " + classes[1].capitalize().replace('-', '')
+
+# Print the combined class
+st.write(combined_class)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
