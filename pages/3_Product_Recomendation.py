@@ -49,7 +49,7 @@ frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 
 #st.write("Colaborative Recommendation")
 # Add a subheader for the collaborative recommendations section
-st.subheader("Collaborative Recommendation")
+
 with st.beta_expander("Expand to see pairs of products brought together"):
     st.write('Recomended Products Pairs')
 
@@ -103,6 +103,8 @@ query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM It
 # Execute the query
 df = get_data_from_snowflake(query)
 # Display the result
+st.subheader("Collaborative Recommendation")
+
 st.write(df)
 
 
