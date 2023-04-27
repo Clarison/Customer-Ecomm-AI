@@ -85,7 +85,7 @@ joined_df = pd.merge(df, results_df,left_on="ID", right_on="customer_id")
 
 # Print the joined dataframe
 with st.beta_expander("Click to expand details"):
-    st.write(joined_df.head())
+    st.write(joined_df)
 
 # Assume df is your original dataframe with many columns
 columns_to_keep = ['TOTAL', 'individual_clv']
