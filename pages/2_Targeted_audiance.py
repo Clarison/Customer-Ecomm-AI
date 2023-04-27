@@ -35,7 +35,7 @@ st.write("<h1 style='text-align: center;'>Targeted Customers</h1>", unsafe_allow
 
 st.write("Select the Product to view its targeted audience:")
 
-selected_value = st.selectbox("Product ID", column_data)
+selected_value = st.selectbox("", column_data)
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{selected_value}'"
 
