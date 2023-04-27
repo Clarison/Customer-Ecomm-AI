@@ -33,9 +33,9 @@ column_data = df["SS_ITEM_SK"]
 
 st.write("<h1 style='text-align: center;'>Targeted Customers</h1>", unsafe_allow_html=True)
 
-st.write("Select the Product to view its targeted audience:")
+#st.write("Select the Product to view its targeted audience:")
 
-selected_value = st.selectbox("", column_data)
+selected_value = st.selectbox("Select the Product to view its targeted audience:", column_data)
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk = '{selected_value}'"
 
