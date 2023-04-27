@@ -155,4 +155,4 @@ completion = openai.ChatCompletion.create(
 )
 
 with st.beta_expander("Why should I buy it?"):
-    st.wrtie(completion.choices[0].message['content'])
+    st.write(completion.choices[0].message['content'])
