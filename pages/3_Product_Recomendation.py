@@ -147,7 +147,7 @@ message_objects = []
 message_objects.append({"role":"system", "content":"You're a chatbot helping customers with product "})
 message_objects.append({"role":"user", "content": f"Here're my latest product orders: {result}"})
 message_objects.append({"role":"user", "content": "Please be friendly and talk to me like a person"})
-message_objects.append({"role":"user", "content": "tell me why i should buy the product"})
+message_objects.append({"role":"user", "content": "tell me why i should buy the product in 70 words max"})
 
 completion = openai.ChatCompletion.create(
   model="gpt-3.5-turbo",
