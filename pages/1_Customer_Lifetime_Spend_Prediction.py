@@ -34,9 +34,8 @@ st.title("Customer Lifetime Value Calculation")
 st.write("In this section, we are using customer transaction data to calculate individual customer lifetime value (CLV). By estimating the total revenue a business can expect from a single customer over their lifetime, we can determine the value of each customer and make informed decisions about marketing, sales, and customer service strategies to increase profitability.")
 
 # Add some padding and a separator
-st.write("")
+
 st.write("---")
-st.write("")
 
 df = get_data_from_snowflake(query)
 
