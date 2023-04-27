@@ -86,7 +86,7 @@ st.write(df)
 
 
 # Concatenate values from Name, Age, and Gender columns into a string
-result = df[['I_CLASS', 'I_CATEGORY', 'I_ITEM_DESC']].apply(lambda x: ' '.join(x.astype(str)), axis=1).tolist()
+result = df[['I_CLASS', 'I_CATEGORY']].apply(lambda x: ' '.join(x.astype(str)), axis=1).tolist()
 
 
 result = ' '.join(result)
