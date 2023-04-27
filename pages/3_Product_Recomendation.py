@@ -143,3 +143,16 @@ with st.beta_expander("Recommended products"):
     st.write("Here are some products you might be interested in:")
     st.write(top_3_products_df)
 
+message_objects = []
+message_objects.append({"role":"system", "content":"You're a chatbot helping customers with product "})
+message_objects.append({"role":"user", "content": f"Here're my latest product orders: {customer_input}"})
+message_objects.append({"role":"user", "content": "Please be friendly and talk to me like a person"})
+message_objects.append({"role":"user", "content": "tell me why i should buy the product"})
+
+completion = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=message_objects
+)
+
+with st.beta_expander("Why should I buy it?"):
+    st.wrtie(completion.choices[0].message['content'])
