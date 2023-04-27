@@ -16,8 +16,12 @@ conn = snowflake.connector.connect(
     schema= st.secrets["schema"]
 )
 
-st.write("<h1 style='text-align: center;'>Recomendations for Customers</h1>", unsafe_allow_html=True)
+#st.write("<h1 style='text-align: center;'>Recomendations for Customers</h1>", unsafe_allow_html=True)
+# Set the page title and icon
+st.set_page_config(page_title="Product Recommendations", page_icon=":shopping_cart:")
 
+# Add a header with the title
+st.header("Recommendations for Customers")
 
 # Define a SQL query to fetch data from a table
 query = 'select * from product_recom'
@@ -44,7 +48,9 @@ df_encoded = df_grouped['SS_ITEM_SK'].str.get_dummies(',')
 # apply Apriori algorithm to identify frequent itemsets
 frequent_itemsets = apriori(df_encoded, min_support=0.04, use_colnames=True)
 
-st.write("Colaborative Recommendation")
+#st.write("Colaborative Recommendation")
+# Add a subheader for the collaborative recommendations section
+st.subheader("Collaborative Recommendation")
 with st.beta_expander("Expand to see pairs of products brought together"):
     st.write('Recomended Products Pairs')
 
@@ -74,7 +80,7 @@ product_a_str ='(' + ','.join(map(str, product)) + ')'
 # find the corresponding value(s) of Product B in antecedent_consequent_dict
 product_b = antecedent_consequent_dict.get(frozenset(product), None)
 
-st.write("The Details For the product you like to buy are  :")
+st.write("The details for the product you like to buy are:")
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_a_str}"
 
@@ -91,7 +97,7 @@ result = ' '.join(result)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
-st.write("You may also like to look at before you complete your purchase :")
+st.write("You may also like to look at before you complete your purchase:")
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_b_str}"
 
@@ -102,7 +108,7 @@ st.write(df)
 
 
 
-st.write("Context Based Recomendations")
+st.subheader("Context-Based Recommendation")
 openai.api_key = st.secrets["api_key"]
 
 query = 'select i_item_sk,i_class,i_category,i_color from item limit 20'
@@ -129,5 +135,5 @@ product_data_df['search_products'] = product_data_df.text_embedding.apply(lambda
 product_data_df = product_data_df.sort_values('search_products', ascending=False)
 
 top_3_products_df=product_data_df.head(3)
-st.write("Here are some Products you might be Intrested in:")
+st.write("Here are some products you might be interested in:")
 st.write(top_3_products_df)
