@@ -104,8 +104,9 @@ query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM It
 df = get_data_from_snowflake(query)
 # Display the result
 st.subheader("Collaborative Recommendation")
-st.write("You may also like to look at before you complete your purchase:")
+
 with st.beta_expander("Recommended products"):
+    st.write("You may also like to look at before you complete your purchase:")
     st.write(df)
 
 
@@ -137,7 +138,9 @@ product_data_df['search_products'] = product_data_df.text_embedding.apply(lambda
 product_data_df = product_data_df.sort_values('search_products', ascending=False)
 
 top_3_products_df=product_data_df.head(3)
-st.write("Here are some products you might be interested in:")
+
 with st.beta_expander("Recommended products"):
-    
+    st.write("Here are some products you might be interested in:")
     st.write(top_3_products_df)
+
+st.subheader("Recommendation")    
