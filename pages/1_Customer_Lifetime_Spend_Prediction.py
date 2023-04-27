@@ -25,7 +25,7 @@ def get_data_from_snowflake(query):
     df = pd.DataFrame(results, columns=[i[0] for i in cur.description])
     return df
 
-st.write("<h1 style='text-align: center;'>Customers LifeTime Value</h1>", unsafe_allow_html=True)
+
 
 
 # Set page title and description
