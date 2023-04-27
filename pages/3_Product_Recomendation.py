@@ -130,7 +130,7 @@ product_data_df = load_product_data()
 customer_input = st.text_input("Hi! How can I help you Today ?" )
 
 response = openai.Embedding.create(
-    input=customer_input,
+    input=result,
     model="text-embedding-ada-002"
 )
 embeddings_customer_question = response['data'][0]['embedding']
