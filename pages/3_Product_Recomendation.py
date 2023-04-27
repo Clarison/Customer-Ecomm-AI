@@ -143,4 +143,3 @@ with st.beta_expander("Recommended products"):
     st.write("Here are some products you might be interested in:")
     st.write(top_3_products_df)
 
-st.subheader("Recommendation")    
