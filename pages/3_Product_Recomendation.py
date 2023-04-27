@@ -83,17 +83,18 @@ df = get_data_from_snowflake(query)
 
 # Display the result
 st.write(df)
-clas =str(df['I_CLASS'])
 
 
-# Extract the two classes
-classes = clas.split()[1:3]
+# Concatenate values from Name, Age, and Gender columns into a string
+result = df[['I_CLASS', 'I_CATEGORY', 'I_ITEM_DESC']].apply(lambda x: ' '.join(x.astype(str)), axis=1).tolist()
 
-# Combine the two classes with a space
-combined_class = classes[0] + " " + classes[1].capitalize().replace('-', '')
+
+result = ' '.join(result)
+
+
 
 # Print the combined class
-st.write(combined_class)
+st.write(result)
 
 product_b_str ='(' + ','.join(map(str, product_b)) + ')'
 #st.write(product_b_str)
