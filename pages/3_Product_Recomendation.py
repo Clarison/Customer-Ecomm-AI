@@ -79,7 +79,7 @@ product_a_str ='(' + ','.join(map(str, product)) + ')'
 # find the corresponding value(s) of Product B in antecedent_consequent_dict
 product_b = antecedent_consequent_dict.get(frozenset(product), None)
 
-st.write("The details for the product you like to buy are:")
+st.write("The details for the product:")
 
 query = f"SELECT I_ITEM_ID,I_PRODUCT_NAME,I_CLASS,I_CATEGORY,I_ITEM_DESC FROM Item WHERE i_item_sk in {product_a_str}"
 
