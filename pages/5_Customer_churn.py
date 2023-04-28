@@ -104,7 +104,7 @@ customer_demo_df=X_test
 
 # replace 'Male' with 1 and 'Female' with 0 in the 'Gender' column
 customer_demo_df['cd_gender'] = customer_demo_df['cd_gender'].replace({1:'Male',0:'Female'})
-age_bins = [0, 30, 50]
+age_bins = [0, 30, 50,100]
 age_labels = ['0','30', '50']
 customer_demo_df['age_agg'] = pd.cut(customer_demo_df['age'], bins=age_bins, labels=age_labels, include_lowest=True)
 
