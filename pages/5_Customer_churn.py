@@ -176,7 +176,7 @@ st.pyplot(fig)
 segment_status_counts = customer_demo_df.groupby(['Segment', 'Status']).size().reset_index(name='Count')
 
 # pivot the DataFrame to create a stacked bar chart
-segment_status_pivot = segment_status_counts.pivot(index='Segmented', columns='Status', values='Count')
+segment_status_pivot = segment_status_counts.pivot(index='Segment', columns='Status', values='Count')
 
 # plot the stacked bar chart
 fig, ax = plt.subplots()
