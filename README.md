@@ -39,7 +39,7 @@ pip install -r requirements.txt
 ```
 
 # Project Report
-([Complete Report](https://codelabs-preview.appspot.com/?file_id=1IMVZ9iy81tuB0RLEO7Sc6-41u111pKCpwhuySra8QCo#0))
+[Complete Report](https://codelabs-preview.appspot.com/?file_id=1IMVZ9iy81tuB0RLEO7Sc6-41u111pKCpwhuySra8QCo#0)
 
 # Streamlit App
 [Customer - Streamlit App](https://clarison-customeranalysis-thefinalone-vig128.streamlit.app/Customer_Lifetime_Spend_Prediction)
