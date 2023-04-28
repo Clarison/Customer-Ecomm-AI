@@ -42,7 +42,7 @@ pip install -r requirements.txt
 [paste](paste)
 
 # Streamlit App
-[Customer - Streamlit App]([https://ecommai.streamlit.app/](https://clarison-customeranalysis-thefinalone-vig128.streamlit.app/Customer_Lifetime_Spend_Prediction))
+[Customer - Streamlit App](https://clarison-customeranalysis-thefinalone-vig128.streamlit.app/Customer_Lifetime_Spend_Prediction)
 
 # Video Demonstration
 
