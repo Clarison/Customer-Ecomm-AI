@@ -39,10 +39,10 @@ pip install -r requirements.txt
 ```
 
 # Project Report
-[EcommAI - Project Report](https://codelabs-preview.appspot.com/?file_id=1sgUkcEJZG9F1Q--qwzl0l6zqqxJByvsBNGrl1tGYbUg#0)
+[paste](paste)
 
 # Streamlit App
-[EcommAI - Streamlit App](https://ecommai.streamlit.app/)
+[Customer - Streamlit App]([https://ecommai.streamlit.app/](https://clarison-customeranalysis-thefinalone-vig128.streamlit.app/Customer_Lifetime_Spend_Prediction))
 
 # Video Demonstration
-[EcommAI - Video](https://youtu.be/SUTK-MF-YaE)
+
