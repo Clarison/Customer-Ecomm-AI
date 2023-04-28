@@ -29,6 +29,8 @@ A powerful new feature that allows businesses to target their ideal customers mo
 
 The new feature I developed for the software is a product recommendation system. The system leverages collaborative and context-based recommendations to suggest products that are likely to be of interest to the user. Collaborative recommendations are based on patterns of purchases made by different customers. For example, the system looks at different baskets and products bought together to suggest items that are frequently purchased together. Context-based recommendations, on the other hand, are based on the customer's recent product selection. For instance, the system may recommend selling a similar product to boost sales or upsell. Additionally, the system uses AI to generate personalized messages that are tailored to each customer. These messages are designed to provide a human-like touch, making customers feel more engaged and valued. Overall, the new product recommendation system helps to increase customer engagement and boost sales by suggesting products that are likely to be of interest to each customer.
 
+![Advanced](https://github.com/Clarison/CustomerAnalysis/blob/main/Advanced%20Recommendation.jpeg)
+
 # Installation
 To install the dependencies for this project, please run the following command:
 ```
