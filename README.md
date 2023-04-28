@@ -32,7 +32,7 @@ The new feature I developed for the software is a product recommendation system.
 ![Advanced](https://github.com/Clarison/CustomerAnalysis/blob/main/Advanced%20Recommendation.jpeg)
 
 
-#conclution 
+# Conclution 
 The ADMS Final Project on Customer Behavior Prediction was a comprehensive and insightful project that provided valuable insights into customer behavior, customer segmentation, and product recommendations. Through the project, we were able to leverage customer demographic data and transaction history to identify customers at risk of churning, forecast customer behavior, estimate customer lifetime value, and identify target audiences for specific products.. We also gained insight into the power of machine learning algorithms in predicting customer behavior and making personalized product recommendations.The development of the Streamlit application showcased the power of sophisticated algorithms and advanced data visualization tools. The knowledge gained through this project can be applied to real-world scenarios, helping businesses to make informed decisions about customer acquisition, retention, and loyalty, ultimately leading to increased profitability and improved customer satisfaction.
 
 # Project Report
