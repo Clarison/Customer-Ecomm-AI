@@ -1,3 +1,7 @@
 streamlit
 snowflake-connector-python
 pandas
+altair
+mlxtend
+openai
+plotly
