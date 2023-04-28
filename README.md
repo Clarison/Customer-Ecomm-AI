@@ -17,6 +17,7 @@ A scoring system to assess the likelihood of a customer buying products based on
 
 This feature leverages sophisticated algorithms to analyze purchasing patterns and calculate a customer's lifetime value, taking into account variables such as churn, discount, profit margin, and years. With a user-friendly Graphical User Interface (GUI), businesses can easily input their data and receive predictions for each customer's lifetime value. The software also features advanced data visualization tools, presenting the information in an intuitive and visually appealing way. With this new feature, businesses can make informed decisions about customer acquisition, retention, and loyalty, ultimately leading to increased profitability and improved customer satisfaction.
 
+![CLV](https://github.com/Clarison/CustomerAnalysis/blob/main/Customer%20Life%20Time%20Predictions.jpeg)
 
 # 2)Targeted Audience 
 
