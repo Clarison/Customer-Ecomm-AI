@@ -117,7 +117,7 @@ segment_bins = ['0_Male','0_Female', '30_Male', '30_Female','50_Male','50_Female
 segment_labels = ['Boy','Girl','Young Adult Male', 'Young Adult Female', 'Old Male', 'Old Female']
 
 # segment customers based on the combined column
-#customer_demo_df['Segmented'] = pd.cut(customer_demo_df['Segment'], bins=segment_bins, labels=segment_labels)
+customer_demo_df['Segmented'] = pd.cut(customer_demo_df['Segment'], bins=segment_bins, labels=segment_labels)
 
 risky_customers=X_test[X_test['customer_status_i']==1].shape[0]
 retention_rate=round(X_test[X_test['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
@@ -185,7 +185,7 @@ st.pyplot(fig)
 segment_status_counts = customer_demo_df.groupby(['Segment', 'customer_status_i']).size().reset_index(name='Count')
 
 # pivot the DataFrame to create a stacked bar chart
-segment_status_pivot = segment_status_counts.pivot(index='customer_status_i', columns='Segment', values='Count')
+segment_status_pivot = segment_status_counts.pivot(index='customer_status_i', columns='Segmented', values='Count')
 
 # plot the stacked bar chart
 fig, ax = plt.subplots()
