@@ -104,14 +104,17 @@ customer_demo_df=X_test
 
 # replace 'Male' with 1 and 'Female' with 0 in the 'Gender' column
 customer_demo_df['cd_gender'] = customer_demo_df['cd_gender'].replace({1:'Male',0:'Female'})
+age_bins = [0, 30, 50]
+age_labels = ['0','30', '50']
+df['age_agg'] = pd.cut(df['age'], bins=age_bins, labels=age_labels, include_lowest=True)
 
-customer_demo_df['Segment'] = customer_demo_df['age'].astype(int).astype(str) + '_' + customer_demo_df['cd_gender'].astype(str)
+customer_demo_df['Segment'] = customer_demo_df['age_agg'].astype(str) + '_' + customer_demo_df['cd_gender'].astype(str)
 
 # create bins for the segment column
-segment_bins = ['50_Male', '50_Female', '51_Male', '51_Female']
+segment_bins = ['0_Male','0_Female', '30_Male', '30_Female','50_Male','50_Female']
 
 # create labels for the bins
-segment_labels = ['Young Male', 'Young Female', 'Old Male', 'Old Female']
+segment_labels = ['Boy','Girl','Young Adult Male', 'Young Adult Female', 'Old Male', 'Old Female']
 
 # segment customers based on the combined column
 #customer_demo_df['Segmented'] = pd.cut(customer_demo_df['Segment'], bins=segment_bins, labels=segment_labels)
