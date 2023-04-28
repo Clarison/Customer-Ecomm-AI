@@ -106,7 +106,7 @@ customer_demo_df=X_test
 customer_demo_df['cd_gender'] = customer_demo_df['cd_gender'].replace({1:'Male',0:'Female'})
 age_bins = [0, 30, 50]
 age_labels = ['0','30', '50']
-df['age_agg'] = pd.cut(df['age'], bins=age_bins, labels=age_labels, include_lowest=True)
+customer_demo_df['age_agg'] = pd.cut(customer_demo_df['age'], bins=age_bins, labels=age_labels, include_lowest=True)
 
 customer_demo_df['Segment'] = customer_demo_df['age_agg'].astype(str) + '_' + customer_demo_df['cd_gender'].astype(str)
 
