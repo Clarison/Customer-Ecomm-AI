@@ -1,4 +1,6 @@
-# CustomerAnalysis
+# Customer Ecomm Application
+
+# Problem Statement 
 This is my final ADM project 
 The main objective is to leverage customer demographic data and transaction history to take proactive measures to retain these customers, and improve overall customer retention rates and lower customer acquisition costs.
 
