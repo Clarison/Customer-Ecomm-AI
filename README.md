@@ -35,3 +35,14 @@ The new feature I developed for the software is a product recommendation system.
 To install the dependencies for this project, please run the following command:
 ```
 pip install -r requirements.txt
+
+```
+
+# Project Report
+[EcommAI - Project Report](https://codelabs-preview.appspot.com/?file_id=1sgUkcEJZG9F1Q--qwzl0l6zqqxJByvsBNGrl1tGYbUg#0)
+
+# Streamlit App
+[EcommAI - Streamlit App](https://ecommai.streamlit.app/)
+
+# Video Demonstration
+[EcommAI - Video](https://youtu.be/SUTK-MF-YaE)
