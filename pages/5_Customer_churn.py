@@ -105,7 +105,7 @@ customer_demo_df=X_test
 # replace 'Male' with 1 and 'Female' with 0 in the 'Gender' column
 customer_demo_df['cd_gender'] = customer_demo_df['cd_gender'].replace({1:'Male',0:'Female'})
 
-customer_demo_df['Segment'] = str(customer_demo_df['age'].astype(int)) + '_' + customer_demo_df['cd_gender'].astype(str)
+customer_demo_df['Segment'] = customer_demo_df['age'].astype(int).astype(str) + '_' + customer_demo_df['cd_gender'].astype(str)
 
 # create bins for the segment column
 segment_bins = ['50_Male', '50_Female', '51_Male', '51_Female']
@@ -182,7 +182,7 @@ st.pyplot(fig)
 segment_status_counts = customer_demo_df.groupby(['Segment', 'customer_status_i']).size().reset_index(name='Count')
 
 # pivot the DataFrame to create a stacked bar chart
-segment_status_pivot = segment_status_counts.pivot(index='customer_status_i', columns='Segment', values='Count')
+segment_status_pivot = segment_status_counts.pivot(index='customer_status_i', columns='Count', values='Segment')
 
 # plot the stacked bar chart
 fig, ax = plt.subplots()
