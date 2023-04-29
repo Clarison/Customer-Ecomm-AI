@@ -108,10 +108,13 @@ age_bins = [0, 30, 50,100]
 age_labels = ['0','30', '50']
 customer_demo_df['age_agg'] = pd.cut(customer_demo_df['age'], bins=age_bins, labels=age_labels, include_lowest=True)
 
+
 customer_demo_df['Segment'] = customer_demo_df['age_agg'].astype(str) + '_' + customer_demo_df['cd_gender'].astype(str)
 
 # create labels for the bins
-segment_labels = ['Boy','Girl','Young Adult Male', 'Young Adult Female', 'Old Male', 'Old Female']
+segment_labels = {'0_Male':'Boy','0_Female':'Girl','30_Male':'Young Adult Male', '30_Female':'Young Adult Female', '50_Male':'Old Male', '50_Female':'Old Female'}
+
+customer_demo_df['Segmented']=customer_demo_df['Segment'].map(segment_labels)
 
 # segment customers based on the combined column
 #customer_demo_df['Segmented'] = pd.cut(customer_demo_df['Segment'], bins=segment_bins, labels=segment_labels)
@@ -179,10 +182,10 @@ ax.set_title('Value Counts of Income')
 st.pyplot(fig)
 
 # group the DataFrame by the 'Segmented' and 'Status' columns and count the number of customers in each group
-segment_status_counts = customer_demo_df.groupby(['Segment', 'customer_status_i']).size().reset_index(name='Count')
+segment_status_counts = customer_demo_df.groupby(['Segmented', 'customer_status_i']).size().reset_index(name='Count')
 
 # pivot the DataFrame to create a stacked bar chart
-segment_status_pivot = segment_status_counts.pivot(index='customer_status_i', columns='Segment', values='Count')
+segment_status_pivot = segment_status_counts.pivot(index='customer_status_i', columns='Segmented', values='Count')
 
 # plot the stacked bar chart
 fig, ax = plt.subplots()
