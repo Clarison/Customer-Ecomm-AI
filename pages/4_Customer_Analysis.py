@@ -230,8 +230,8 @@ def run_query_3(query):
     return df
 
 age_df=run_query_3(query)
-c1 = alt.Chart(age_df,title='Age Distribution of Customers').mark_bar().encode(x='Age', y='count')
-c1 = c1.properties(width=800, height=400)
+#c1 = alt.Chart(age_df,title='Age Distribution of Customers').mark_bar().encode(x='Age', y='count')
+#c1 = c1.properties(width=800, height=400)
 #############################################################################################################################
 
  
@@ -245,7 +245,7 @@ with tab1:
 with tab2:   
     st.altair_chart(c1)
 with tab3:
-    st.altair_chart(age_df)
+    st.bar_chart(age_df)
     
 ##########################################################################################################################
 st.sidebar.title ('Revenue per Demographic') 
