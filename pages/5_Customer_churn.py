@@ -17,6 +17,12 @@ import multiprocessing
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
+from sklearn import preprocessing 
+  from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(page_title="Customer Churn Forecast", page_icon=":bar_chart:", layout="wide")
 
@@ -37,36 +43,39 @@ engine = create_engine(URL(
 # Define a function to be executed in parallel
 @st.cache_data
 def execute_query(query):
-    engine = create_engine(URL(
-    account = 'dl84836.us-east-2.aws',
-    user = 'alekyakastury',
-    password = '@Noon1240',
-    database = 'CUSTOMER',
-    schema = 'PUBLIC',
-    warehouse = 'compute_wh'))
     df = pd.read_sql_query(query, engine)
     return df
 
 
 ######################################################################################################
 # Define your SQL queries
-query =  """SELECT * FROM CUSTOMER_DEMO_VIEW LIMIT 5000;"""
-df_customer_demo=execute_query(query)
+query1 =  """SELECT * FROM CUSTOMER_DEMO_VIEW LIMIT 5000;"""
+@st.cache_data
+def exec_cust_demo(query):
+    df_customer_demo=execute_query(query)
+    return df_customer_demo
+df_customer_demo=exec_cust_demo(query1)
 
-query="""SELECT * FROM CUSTOMER_INCOME LIMIT 5000;"""
-df_customer_income=execute_query(query)
+query2="""SELECT * FROM CUSTOMER_INCOME LIMIT 5000;"""
+@st.cache_data
+def exec_cust_income(query):
+    df_customer_income=execute_query(query)
+    return df_customer_income
+df_customer_income=exec_cust_income(query2)
 
-query= """SELECT * FROM INCOME_VIEW LIMIT 5000;"""
-df_income_view=execute_query(query)
+query3= """SELECT * FROM INCOME_VIEW LIMIT 5000;"""
+@st.cache_data
+def exec_cust_income_view(query):
+    df_income_view=execute_query(query)
+    return df_income_view
+df_income_view=exec_cust_income_view(query3)
 #########################################################################################
 #### Data Preparation
 df_customer_demo=df_customer_demo.dropna()
 #########################################################################################
 ###### Label encoding
 
-# Import label encoder 
-from sklearn import preprocessing 
-  
+
 # label_encoder object knows how to understand word labels. 
 label_encoder = preprocessing.LabelEncoder()
 
@@ -84,11 +93,6 @@ from imblearn.over_sampling import SMOTE
 smote = SMOTE()
 X_resampled, y_resampled = smote.fit_resample(X,y)
 
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
 
 X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
 
@@ -122,13 +126,21 @@ customer_demo_df['Segmented']=customer_demo_df['Segment'].map(segment_labels)
 risky_customers=X_test[X_test['customer_status_i']==1].shape[0]
 retention_rate=round(X_test[X_test['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
 ###############################################################################
-query=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS LIMIT 5000;"""
-df_status=execute_query(query)
+query4=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS LIMIT 5000;"""
 
+@st.cache_data
+def exec_status(query):
+    df_status=execute_query(query)
+    return df_status
+df_status=exec_status(query4)
 ################################# CUSTOMER INCOME #################################################3
 
-query="""SELECT * FROM CUSTOMER_INCOME;"""
-df_customer_income=execute_query(query)
+query5="""SELECT * FROM CUSTOMER_INCOME;"""
+@st.cache_data
+def exec_cust_inc(query):
+    df_customer_income=execute_query(query)
+    return df_customer_income
+df_customer_income=exec_cust_inc(query5)
 
 X = df_customer_income.drop(columns=['c_customer_sk','customer_status_i'], axis = 1)
 y = df_customer_income['customer_status_i']
@@ -154,9 +166,13 @@ mean_b = filtered_df['income'].mean()
 
 ############################################ PRODUCT ANALYSIS #######################################
 
-query= """SELECT * FROM PRODUCT_VIEW LIMIT 5000;"""
-df_product_view=execute_query(query)
+query6= """SELECT * FROM PRODUCT_VIEW LIMIT 5000;"""
 
+@st.cache_data
+def exec_product(query):
+    df_product_view=execute_query(query)
+    return df_product_view
+df_product_view =exec_product(query6)
 df_product_view=df_product_view.dropna()
 count_threshold = 1000
 df_filtered = df_product_view[df_product_view['i_class'].map(df_product_view['i_class'].value_counts()) >= count_threshold]
