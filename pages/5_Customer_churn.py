@@ -123,7 +123,7 @@ customer_demo_df['Segmented']=customer_demo_df['Segment'].map(segment_labels)
 #customer_demo_df['Segmented'] = pd.cut(customer_demo_df['Segment'], bins=segment_bins, labels=segment_labels)
 
 risky_customers=customer_demo_df[customer_demo_df['customer_status_i']==1].shape[0]
-retention_rate=round(customer_demo_df[customer_demo_df['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
+retention_rate=round(customer_demo_df[customer_demo_df['customer_status_i']==2].shape[0]*100/customer_demo_df['customer_status_i'].shape[0],2)
 ###############################################################################
 query4=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS;"""
 
