@@ -271,7 +271,7 @@ fig.set_size_inches(10, 10)
 st.pyplot(fig)
 
 st.write('Combined Scored DataFrame:')
-st.write(scored_df[['cd_gender','age','score']].unique())
+st.write(scored_df[['cd_gender','age','category','score']].unique())
 
 
 
