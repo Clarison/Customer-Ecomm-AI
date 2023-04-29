@@ -49,21 +49,21 @@ def execute_query(query):
 
 ######################################################################################################
 # Define your SQL queries
-query1 =  """SELECT * FROM CUSTOMER_DEMO_VIEW LIMIT 10000;"""
+query1 =  """SELECT * FROM CUSTOMER_DEMO_VIEW;"""
 @st.cache_data
 def exec_cust_demo(query):
     df_customer_demo=pd.read_sql_query(query, engine)
     return df_customer_demo
 df_customer_demo=exec_cust_demo(query1)
 
-query2="""SELECT * FROM CUSTOMER_INCOME LIMIT 10000;"""
+query2="""SELECT * FROM CUSTOMER_INCOME;"""
 @st.cache_data
 def exec_cust_income(query):
     df_customer_income=pd.read_sql_query(query, engine)
     return df_customer_income
 df_customer_income=exec_cust_income(query2)
 
-query3= """SELECT * FROM INCOME_VIEW LIMIT 10000;"""
+query3= """SELECT * FROM INCOME_VIEW;"""
 @st.cache_data
 def exec_cust_income_view(query):
     df_income_view=pd.read_sql_query(query, engine)
@@ -126,7 +126,7 @@ customer_demo_df['Segmented']=customer_demo_df['Segment'].map(segment_labels)
 risky_customers=X_test[X_test['customer_status_i']==1].shape[0]
 retention_rate=round(X_test[X_test['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
 ###############################################################################
-query4=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS LIMIT 10000;"""
+query4=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS;"""
 
 @st.cache_data
 def exec_status(query):
@@ -176,7 +176,7 @@ with st.beta_container():
         st.metric('Retention Rate', str(retention_rate)+'%')
 ############################################ PRODUCT ANALYSIS #######################################
 
-query6= """SELECT * FROM PRODUCT_VIEW LIMIT 10000;"""
+query6= """SELECT * FROM PRODUCT_VIEW;"""
 
 @st.cache_data
 def exec_product(query):
