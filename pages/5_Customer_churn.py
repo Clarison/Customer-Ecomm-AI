@@ -91,16 +91,19 @@ y = df_customer_demo['customer_status_i']
 
 from imblearn.over_sampling import SMOTE
 smote = SMOTE()
-X_resampled, y_resampled = smote.fit_resample(X,y)
 
+@st.cache_data
+def run_model():
+    X_resampled, y_resampled = smote.fit_resample(X,y)
+    X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
 
-X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
+    random = RandomForestClassifier(n_estimators = 200, max_depth=200, random_state = 0) 
+    random.fit(X_train , y_train) 
 
-random = RandomForestClassifier(n_estimators = 200, max_depth=200, random_state = 0) 
-random.fit(X_train , y_train) 
-print('Random_forest_score :',random.score(X_test, y_test))
+    y_pred=random.predict(X_test)
+    return y_pred
 
-y_pred=random.predict(X_test)
+y_pred=run_model()
 
 X_test['customer_status_i']=y_pred
 customer_demo_df=X_test
