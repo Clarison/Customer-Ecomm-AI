@@ -100,10 +100,9 @@ def run_model():
     random.fit(XX_train , y_train) 
     y_pred=random.predict(XX_test)
     XX_test['customer_status_i']=y_pred
-    customer_demo_df=XX_test
-    return customer_demo_df,X_test
+    return XX_test
 
-customer_demo_df,X_test=run_model()
+customer_demo_df=run_model()
 
 # replace 'Male' with 1 and 'Female' with 0 in the 'Gender' column
 customer_demo_df['cd_gender'] = customer_demo_df['cd_gender'].replace({1:'Male',0:'Female'})
