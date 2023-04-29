@@ -42,4 +42,4 @@ The ADMS Final Project on Customer Behavior Prediction was a comprehensive and i
 [Customer - Streamlit App](https://clarison-customeranalysis-thefinalone-vig128.streamlit.app/Customer_Lifetime_Spend_Prediction)
 
 # Video Demonstration
-
+[Drive link](https://drive.google.com/file/d/1oxYHFjgYUGC3cAAsI_Uv0dN3qu_OaLmq/view?usp=share_link)
