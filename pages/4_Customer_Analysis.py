@@ -219,18 +219,33 @@ group by DD.D_MOY;""".format(year)
 df=pd.read_sql_query(query2,engine)
 c2 = alt.Chart(df,title='Monthly customer count per year').mark_line().encode(x='month', y='count_of_customers')
 c2 = c2.properties(width=800, height=400)
+##################################################################################
+query="""SELECT AGE,COUNT(1) AS COUNT FROM (SELECT D_YEAR-C_BIRTH_YEAR AS AGE FROM CUSTOMER C INNER JOIN STORE_SALES SS
+ON C.C_CUSTOMER_SK=SS.SS_CUSTOMER_SK INNER JOIN DATE_DIM DD
+ON SS.SS_SOLD_DATE_SK=DD.D_DATE_SK WHERE DD.D_YEAR={} AND DD.D_MOY={})S group by AGE;""".format(year,month)
+
+@st.cache_data
+def run_query_3(query):
+    df=pd.read_sql_query(query,engine)
+    return df
+
+age_df=run_query_3(query)
+c1 = alt.Chart(age_df,title='Age Distribution of Customers').mark_bar().encode(x='Age', y='count')
+c1 = c1.properties(width=800, height=400)
+#############################################################################################################################
 
  
 
 #################################################################################
-tab1, tab2 = st.tabs(["Monthly Customer Count per Year","Customer count analysis of the Month"])
+tab1, tab2, tab3 = st.tabs(["Monthly Customer Count per Year","Customer count analysis of the Month","Age distribution of Customers"])
 
 with tab1:
     st.altair_chart(c2)
 
 with tab2:   
     st.altair_chart(c1)
-
+with tab3:
+    st.altair_chart(age_df)
     
 ##########################################################################################################################
 st.sidebar.title ('Revenue per Demographic') 
@@ -253,18 +268,6 @@ st.sidebar.markdown('WOMEN')
 st.sidebar.markdown('$'+str(shorten_num(total_revenue_women)))  
 
 ###########################################################################################################################
-query="""SELECT AGE,COUNT(1) AS COUNT FROM (SELECT D_YEAR-C_BIRTH_YEAR AS AGE FROM CUSTOMER C INNER JOIN STORE_SALES SS
-ON C.C_CUSTOMER_SK=SS.SS_CUSTOMER_SK INNER JOIN DATE_DIM DD
-ON SS.SS_SOLD_DATE_SK=DD.D_DATE_SK WHERE DD.D_YEAR={} AND DD.D_MOY={})S group by AGE;""".format(year,month)
-
-@st.cache_data
-def run_query_3(query):
-    df=pd.read_sql_query(query,engine)
-    return df
-
-age_df=run_query_3(query)
-st.bar_chart(age_df)
-#############################################################################################################################
 
 
 
