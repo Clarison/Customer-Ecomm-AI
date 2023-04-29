@@ -94,12 +94,12 @@ smote = SMOTE()
 
 @st.cache_data
 def run_model():
-    X_resampled, y_resampled = smote.fit_resample(X,y)
-    X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
+    XX_resampled, y_resampled = smote.fit_resample(X,y)
+    XX_train, XX_test, y_train, y_test = train_test_split(XX_resampled, y_resampled, test_size = 0.2, random_state = 42)
     random = RandomForestClassifier(n_estimators = 200, max_depth=200, random_state = 0) 
-    random.fit(X_train , y_train) 
-    y_pred=random.predict(X_test)
-    X_test['customer_status_i']=y_pred
+    random.fit(XX_train , y_train) 
+    y_pred=random.predict(XX_test)
+    XX_test['customer_status_i']=y_pred
     customer_demo_df=X_test
     return customer_demo_df
 
@@ -122,8 +122,8 @@ customer_demo_df['Segmented']=customer_demo_df['Segment'].map(segment_labels)
 # segment customers based on the combined column
 #customer_demo_df['Segmented'] = pd.cut(customer_demo_df['Segment'], bins=segment_bins, labels=segment_labels)
 
-risky_customers=X_test[X_test['customer_status_i']==1].shape[0]
-retention_rate=round(X_test[X_test['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
+risky_customers=customer_demo_df[customer_demo_df['customer_status_i']==1].shape[0]
+retention_rate=round(customer_demo_df[customer_demo_df['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
 ###############################################################################
 query4=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS;"""
 
