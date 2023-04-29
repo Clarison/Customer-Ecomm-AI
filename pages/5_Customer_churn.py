@@ -197,6 +197,8 @@ plt.xlabel('Segment')
 plt.ylabel('Number of Customers')
 
 # display the plot on Streamlit
+fig.set_size_inches(10, 6)
+
 st.pyplot(fig)
 
 
