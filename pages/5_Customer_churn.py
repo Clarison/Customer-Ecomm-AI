@@ -52,21 +52,21 @@ def execute_query(query):
 query1 =  """SELECT * FROM CUSTOMER_DEMO_VIEW LIMIT 5000;"""
 @st.cache_data
 def exec_cust_demo(query):
-    df_customer_demo=execute_query(query)
+    df_customer_demo=pd.read_sql_query(query, engine)
     return df_customer_demo
 df_customer_demo=exec_cust_demo(query1)
 
 query2="""SELECT * FROM CUSTOMER_INCOME LIMIT 5000;"""
 @st.cache_data
 def exec_cust_income(query):
-    df_customer_income=execute_query(query)
+    df_customer_income=pd.read_sql_query(query, engine)
     return df_customer_income
 df_customer_income=exec_cust_income(query2)
 
 query3= """SELECT * FROM INCOME_VIEW LIMIT 5000;"""
 @st.cache_data
 def exec_cust_income_view(query):
-    df_income_view=execute_query(query)
+    df_income_view=pd.read_sql_query(query, engine)
     return df_income_view
 df_income_view=exec_cust_income_view(query3)
 #########################################################################################
@@ -130,7 +130,7 @@ query4=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FRO
 
 @st.cache_data
 def exec_status(query):
-    df_status=execute_query(query)
+    df_status=pd.read_sql_query(query, engine)
     return df_status
 df_status=exec_status(query4)
 ################################# CUSTOMER INCOME #################################################3
@@ -138,7 +138,7 @@ df_status=exec_status(query4)
 query5="""SELECT * FROM CUSTOMER_INCOME;"""
 @st.cache_data
 def exec_cust_inc(query):
-    df_customer_income=execute_query(query)
+    df_customer_income=pd.read_sql_query(query, engine)
     return df_customer_income
 df_customer_income=exec_cust_inc(query5)
 
@@ -170,7 +170,7 @@ query6= """SELECT * FROM PRODUCT_VIEW LIMIT 5000;"""
 
 @st.cache_data
 def exec_product(query):
-    df_product_view=execute_query(query)
+    df_product_view=pd.read_sql_query(query, engine)
     return df_product_view
 df_product_view =exec_product(query6)
 df_product_view=df_product_view.dropna()
