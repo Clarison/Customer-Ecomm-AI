@@ -158,6 +158,8 @@ query= """SELECT * FROM PRODUCT_VIEW;"""
 df_product_view=execute_query(query)
 
 df_product_view=df_product_view.dropna()
+count_threshold = 1000
+df_filtered = df_product_view[df_product_view['i_class'].map(df_product_view['i_class'].value_counts()) >= count_threshold]
 # Filter the top 10 products based on their frequency
 top_10_products = df_filtered['i_item_id'].value_counts().nlargest(10)
 
