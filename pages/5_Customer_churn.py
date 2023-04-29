@@ -18,7 +18,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 from sklearn import preprocessing 
-  from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 from sklearn.tree import DecisionTreeClassifier
