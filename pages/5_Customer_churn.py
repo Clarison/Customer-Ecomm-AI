@@ -138,24 +138,28 @@ query5="""SELECT * FROM CUSTOMER_INCOME;"""
 def exec_cust_inc(query):
     df_customer_income=pd.read_sql_query(query, engine)
     return df_customer_income
+
 df_customer_income=exec_cust_inc(query5)
 
-X = df_customer_income.drop(columns=['c_customer_sk','customer_status_i'], axis = 1)
-y = df_customer_income['customer_status_i']
+@st.cache_data
+def run_model1():
+    X = df_customer_income.drop(columns=['c_customer_sk','customer_status_i'], axis = 1)
+    y = df_customer_income['customer_status_i']
 
-from imblearn.over_sampling import SMOTE
-smote = SMOTE()
-X_resampled, y_resampled = smote.fit_resample(X,y)
+    smote = SMOTE()
+    X_resampled, y_resampled = smote.fit_resample(X,y)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
 
-random = RandomForestClassifier(n_estimators = 200, max_depth=100, random_state = 0) 
-random.fit(X_train , y_train) 
+    random = RandomForestClassifier(n_estimators = 200, max_depth=100, random_state = 0) 
+    random.fit(X_train , y_train) 
 
-y_pred=random.predict(X_test)
+    y_pred=random.predict(X_test)
 
-X_test['customer_status_i']=y_pred
-cust_income_df=X_test
+    X_test['customer_status_i']=y_pred
+    return X_test
+
+X_test=run_model1()
 # filter the DataFrame based on a condition
 filtered_df = X_test.loc[X_test['customer_status_i'] == 0]
 
@@ -182,30 +186,35 @@ def exec_product(query):
     return df_product_view
 df_product_view =exec_product(query6)
 df_product_view=df_product_view.dropna()
-count_threshold = 1000
-df_filtered = df_product_view[df_product_view['i_class'].map(df_product_view['i_class'].value_counts()) >= count_threshold]
+
+def run_model2():
+    count_threshold = 1000
+    df_filtered = df_product_view[df_product_view['i_class'].map(df_product_view['i_class'].value_counts()) >= count_threshold]
 # Filter the top 10 products based on their frequency
-top_10_products = df_filtered['i_item_id'].value_counts().nlargest(10)
+#top_10_products = df_filtered['i_item_id'].value_counts().nlargest(10)
 
-df_filtered['cd_gender']= label_encoder.fit_transform(df_filtered['cd_gender'])
-df_filtered['cd_credit_rating']= label_encoder.fit_transform(df_filtered['cd_credit_rating'])
-df_filtered['cd_marital_status']= label_encoder.fit_transform(df_filtered['cd_marital_status'])
-df_filtered['cd_education_status']= label_encoder.fit_transform(df_filtered['cd_education_status'])
-df_filtered['i_class']= label_encoder.fit_transform(df_filtered['i_class'])
-df_product=df_filtered[['age','cd_gender','cd_education_status','cd_credit_rating','cd_marital_status','cd_purchase_estimate','i_class']]
-X = df_product.drop(columns=['i_class'], axis = 1)
-y = df_product['i_class']
-X_resampled, y_resampled = smote.fit_resample(X,y)
+    df_filtered['cd_gender']= label_encoder.fit_transform(df_filtered['cd_gender'])
+    df_filtered['cd_credit_rating']= label_encoder.fit_transform(df_filtered['cd_credit_rating'])
+    df_filtered['cd_marital_status']= label_encoder.fit_transform(df_filtered['cd_marital_status'])
+    df_filtered['cd_education_status']= label_encoder.fit_transform(df_filtered['cd_education_status'])
+    df_filtered['i_class']= label_encoder.fit_transform(df_filtered['i_class'])
+    df_product=df_filtered[['age','cd_gender','cd_education_status','cd_credit_rating','cd_marital_status','cd_purchase_estimate','i_class']]
 
-X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
-random = RandomForestClassifier(n_estimators = 200, max_depth=100, random_state = 0) 
-random.fit(X_train , y_train) 
-y_pred=random.predict(X_test)
+    X = df_product.drop(columns=['i_class'], axis = 1)
+    y = df_product['i_class']
+    X_resampled, y_resampled = smote.fit_resample(X,y)
+    
+    X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
+    random = RandomForestClassifier(n_estimators = 200, max_depth=100, random_state = 0) 
+    random.fit(X_train , y_train) 
+    y_pred=random.predict(X_test)
 
-X_test['i_class']=y_pred
-cust_product_df=X_test
+    X_test['i_class']=y_pred
+    return X_test
 
-cust_product_df['i_class'].unique()
+cust_product_df=run_model2()
+
+#cust_product_df['i_class'].unique()
 
 i_class={0:'accessories',
 1:'athletic',
