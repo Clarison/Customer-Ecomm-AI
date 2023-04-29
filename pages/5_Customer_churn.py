@@ -50,13 +50,13 @@ def execute_query(query):
 
 ######################################################################################################
 # Define your SQL queries
-query =  """SELECT * FROM CUSTOMER_DEMO_VIEW;"""
+query =  """SELECT * FROM CUSTOMER_DEMO_VIEW LIMIT 5000;"""
 df_customer_demo=execute_query(query)
 
-query="""SELECT * FROM CUSTOMER_INCOME;"""
+query="""SELECT * FROM CUSTOMER_INCOME LIMIT 5000;"""
 df_customer_income=execute_query(query)
 
-query= """SELECT * FROM INCOME_VIEW;"""
+query= """SELECT * FROM INCOME_VIEW LIMIT 5000;"""
 df_income_view=execute_query(query)
 #########################################################################################
 #### Data Preparation
@@ -122,7 +122,7 @@ customer_demo_df['Segmented']=customer_demo_df['Segment'].map(segment_labels)
 risky_customers=X_test[X_test['customer_status_i']==1].shape[0]
 retention_rate=round(X_test[X_test['customer_status_i']==2].shape[0]*100/X_test['customer_status_i'].shape[0],2)
 ###############################################################################
-query=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS LIMIT 10000;"""
+query=""" SELECT CUSTOMER_STATUS,COUNT(C_CUSTOMER_SK) AS COUNT_OF_CUSTOMERS FROM ACTIVE_CUSTOMERS GROUP BY CUSTOMER_STATUS LIMIT 5000;"""
 df_status=execute_query(query)
 
 ################################# CUSTOMER INCOME #################################################3
@@ -154,7 +154,7 @@ mean_b = filtered_df['income'].mean()
 
 ############################################ PRODUCT ANALYSIS #######################################
 
-query= """SELECT * FROM PRODUCT_VIEW;"""
+query= """SELECT * FROM PRODUCT_VIEW LIMIT 5000;"""
 df_product_view=execute_query(query)
 
 df_product_view=df_product_view.dropna()
