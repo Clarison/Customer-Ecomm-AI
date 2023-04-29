@@ -152,6 +152,60 @@ filtered_df = X_test.loc[X_test['customer_status_i'] == 0]
 # calculate the mean of column 'B' in the filtered DataFrame
 mean_b = filtered_df['income'].mean()
 
+############################################ PRODUCT ANALYSIS #######################################
+
+query= """SELECT * FROM PRODUCT_VIEW;"""
+df_product_view=execute_query(query)
+
+df_product_view=df_product_view.dropna()
+# Filter the top 10 products based on their frequency
+top_10_products = df_filtered['i_item_id'].value_counts().nlargest(10)
+
+df_filtered['cd_gender']= label_encoder.fit_transform(df_filtered['cd_gender'])
+df_filtered['cd_credit_rating']= label_encoder.fit_transform(df_filtered['cd_credit_rating'])
+df_filtered['cd_marital_status']= label_encoder.fit_transform(df_filtered['cd_marital_status'])
+df_filtered['cd_education_status']= label_encoder.fit_transform(df_filtered['cd_education_status'])
+df_filtered['i_class']= label_encoder.fit_transform(df_filtered['i_class'])
+df_product=df_filtered[['age','cd_gender','cd_education_status','cd_credit_rating','cd_marital_status','cd_purchase_estimate','i_class']]
+X = df_product.drop(columns=['i_class'], axis = 1)
+y = df_product['i_class']
+X_resampled, y_resampled = smote.fit_resample(X,y)
+
+X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
+random = RandomForestClassifier(n_estimators = 200, max_depth=100, random_state = 0) 
+random.fit(X_train , y_train) 
+y_pred=random.predict(X_test)
+
+X_test['i_class']=y_pred
+cust_product_df=X_test
+
+cust_product_df['i_class'].unique()
+
+i_class={0:'accessories',
+1:'athletic',
+2:'classical',
+3:'country',
+4:'dresses',
+5:'fragrances',
+6:'infants',
+7:'kids',
+8:'maternity',
+9:'mens',
+10:'newborn',
+11:'pants',
+12:'pop',
+13:'rock',
+14:'school-uniforms',
+15:'shirts',
+16:'sports-apparel',
+17:'swimwear',
+18:'toddlers',
+19:'womens'}
+
+cust_product_df['category']=cust_product_df['i_class'].map(i_class)
+cust_product_df['cd_gender'] = cust_product_df['cd_gender'].replace({1:'Male', 0:'Female'})
+cust_product_df['age'] = cust_product_df['age'].astype(int)
+#cust_product_df[['cd_gender','age','category']]
 
 ############################################## Dashboard #############################################3
 # Create a container for the metrics
@@ -197,7 +251,7 @@ plt.xlabel('Segment')
 plt.ylabel('Number of Customers')
 
 # display the plot on Streamlit
-fig.set_size_inches(20, 10)
+fig.set_size_inches(10, 10)
 
 st.pyplot(fig)
 
