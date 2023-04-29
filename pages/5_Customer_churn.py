@@ -96,18 +96,14 @@ smote = SMOTE()
 def run_model():
     X_resampled, y_resampled = smote.fit_resample(X,y)
     X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.2, random_state = 42)
-
     random = RandomForestClassifier(n_estimators = 200, max_depth=200, random_state = 0) 
     random.fit(X_train , y_train) 
-
     y_pred=random.predict(X_test)
-    return y_pred
+    X_test['customer_status_i']=y_pred
+    customer_demo_df=X_test
+    return customer_demo_df
 
-y_pred=run_model()
-
-X_test['customer_status_i']=y_pred
-customer_demo_df=X_test
-# combine 3 columns into 1 column
+customer_demo_df=run_model()
 
 # replace 'Male' with 1 and 'Female' with 0 in the 'Gender' column
 customer_demo_df['cd_gender'] = customer_demo_df['cd_gender'].replace({1:'Male',0:'Female'})
