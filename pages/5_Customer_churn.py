@@ -207,6 +207,19 @@ cust_product_df['cd_gender'] = cust_product_df['cd_gender'].replace({1:'Male', 0
 cust_product_df['age'] = cust_product_df['age'].astype(int)
 #cust_product_df[['cd_gender','age','category']]
 
+# define the scoring function
+def segment_score(segment_df, category):
+    # count the number of purchases in the category for each segment
+    segment_counts = segment_df[segment_df['category'] == category].groupby(['cd_gender', 'age']).size().reset_index(name='count')
+    # normalize the counts to get the likelihood of purchase for each segment
+    segment_counts['score'] = segment_counts['count'] / segment_counts['count'].sum()
+    # merge the likelihood scores with the original DataFrame
+    segment_scores = segment_df.merge(segment_counts[['cd_gender', 'age', 'score']], on=['cd_gender', 'age'])
+    return segment_scores
+
+# calculate the scores for all categories and concatenate the results
+scored_df = pd.concat([segment_score(cust_product_df, category) for category in cust_product_df['category'].unique()])
+
 ############################################## Dashboard #############################################3
 # Create a container for the metrics
 with st.beta_container():
@@ -255,7 +268,8 @@ fig.set_size_inches(10, 10)
 
 st.pyplot(fig)
 
-
+st.write('Combined Scored DataFrame:')
+st.write(scored_df[['cd_gender','age','score]])
 
 
 
